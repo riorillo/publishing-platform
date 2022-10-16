@@ -1,12 +1,39 @@
-export const theme = {
+import { createTheme, Theme} from '@mui/material'
+
+declare module '@mui/material/styles' {
+  
+  // allow configuration using `createTheme`
+  interface ThemeOptions extends Theme{
     colors: {
+      [key:string]: string;
+    },
+    fontSizes: {
+      [key:string]: number;
+    },
+    radii: number[],
+    space: {
+      [key:string]: number;
+    },
+    sizes: {
+      [key:string]: number;
+    },
+    textTransform: {
+      [key:string]: string;
+    },
+
+  }
+}
+
+
+export const theme:Theme = createTheme({
+    colors : {
       background: '#FFF',
       main: '#7AC86A',
       darker: '#59BA45',
       backgroundDark: '#121212',
       textPrimary: '#000',
       textSecondary: '#FFF'
-    },
+      },
     fontSizes: {
       extraLarge: 44,
       large: 32,
@@ -34,6 +61,5 @@ export const theme = {
       lowercase: 'lowercase',
       none: 'none',
     },
-  }
-  export type Theme = typeof theme
-  export type ThemeColors = keyof Theme['colors']
+  })
+  
