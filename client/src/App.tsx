@@ -1,10 +1,9 @@
 import React from 'react';
+import SavedPost from "./components/SavedPost";
 
 function App() {
   return (
-    <div>
-      <h1>Prova</h1>
-    </div>
+    <SavedPost />
   );
 }
 
