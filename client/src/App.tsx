@@ -1,10 +1,15 @@
 import React from 'react';
 import SavedPost from "./components/SavedPost";
+import { Routes, Route } from 'react-router-dom';
+// import { Layout } from './components/Layout'
 
-function App() {
+export function App() {
   return (
-    <SavedPost />
-  );
+    <Routes>
+      <Route path="/" element={<div>This Is The Homepage</div>}/>
+      <Route path="me" element={<div>Pagina personale </div>} />
+      <Route path="me/stories" element={<div>I tuoi post</div>} />
+      <Route path="me/saved" element={<SavedPost />} />
+    </Routes>
+  )
 }
-
-export default App;
