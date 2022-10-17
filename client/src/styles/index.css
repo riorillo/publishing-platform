@@ -1,3 +1,20 @@
+.MuiBox-root:first-child .ql-container {
+  font-size: 42px;
+}
+
+.MuiBox-root:nth-child(2) .ql-container {
+  font-size: 21px;
+}
+
+.ql-tooltip {
+  z-index: 9999;
+}
+
+.quill > .ql-container > .ql-editor.ql-blank::before {
+  font-style: normal;
+  color: gray;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -6,4 +23,6 @@
 
 body {
   height: 100vh;
-}/*# sourceMappingURL=index.css.map */
+}
+
+/*# sourceMappingURL=index.css.map */

@@ -1,0 +1,24 @@
+//Override del font-size di default per il titolo;
+.MuiBox-root:first-child{
+    .ql-container{
+        font-size: 42px;
+    }
+}
+
+//Override del font-size di default per il corpo dell'articolo;
+.MuiBox-root:nth-child(2){
+    .ql-container{
+        font-size: 21px;
+    }
+}
+
+//Override dello z-index della toolbar;
+.ql-tooltip{
+    z-index: 9999;
+}
+
+//Override placeholder;
+.quill > .ql-container > .ql-editor.ql-blank::before{
+    font-style: normal;
+    color: gray;
+}
