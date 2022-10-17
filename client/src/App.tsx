@@ -1,7 +1,6 @@
 import React from 'react';
 import SavedPost from "./components/SavedPost";
 import { Routes, Route } from 'react-router-dom';
-// import { Layout } from './components/Layout'
 import { ThemeProvider } from '@mui/material'
 import { Layout } from './components/Layout'
 
