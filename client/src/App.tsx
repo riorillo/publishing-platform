@@ -1,20 +1,21 @@
-import React from "react";
-import Post from "./components/Post/";
-const oggetto = {
-  userImage: "https://miro.medium.com/1*W0wM9xIeeIR3_Oo0E_thaA.png",
-  username: "Alex",
-  publishedAt: "20/10/2022",
-  title: "Ciccio si è fatto grande",
-  description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. A architecto commodi ut nihil non. Magni aspernatur repellat, dicta quibusdam voluptatibus numquam velit officia quam sed et corrupti doloremque quas quos.",
-  imageUrl: "https://miro.medium.com/1*W0wM9xIeeIR3_Oo0E_thaA.png",
-  topic: "Non so",
-  readingTime: "5min",
-};
+import React from 'react'
+import { ThemeProvider } from '@mui/material'
 
-function App() {
+import { Routes, Route } from 'react-router-dom'
+import { Layout } from './components/Layout'
+
+import { theme } from './styles/theme'
+export function App() {
   return (
-   <Post article = {oggetto} />
-  );
+    <ThemeProvider theme={theme}>
+    <Routes>
+      <Route path="/" element={<Layout />}>
+        <Route path="me" element={<div>Pagina personale </div>} />
+        <Route path="me/stories" element={<div>I tuoi post</div>} />
+        <Route path="me/saved" element={<div>I tuoi post salvati</div>} />
+        <Route path="/new-story" element={<div>Scrivi un nuovo post</div>} />
+      </Route>
+    </Routes>
+    </ThemeProvider>
+  )
 }
-
-export default App;
