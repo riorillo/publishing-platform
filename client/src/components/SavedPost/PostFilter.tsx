@@ -3,15 +3,16 @@ import { TabContext, TabList, TabPanel } from "@mui/lab";
 import { Tab } from "@mui/material";
 import { Box } from "@mui/system";
 import React from "react";
-import { ArticleList } from "./index";
+import Post from "../Post";
+import { Article } from "./mockArticle";
 import LayoutStyle from "./style";
 
 type Props = {
   visualized: string;
   handleChange: any;
   tagList: string[];
-  postList: ArticleList[];
-  visualizedList?: ArticleList[];
+  postList: Article[];
+  visualizedList?: Article[];
 };
 
 export default function PostFilter({
@@ -25,15 +26,13 @@ export default function PostFilter({
     <Box maxWidth="700px">
       <TabContext value={visualized}>
         <TabList
-          color="main"
           value={visualized}
-          aria-label="basic tabs example"
           variant="scrollable"
           scrollButtons="auto"
           onChange={handleChange}
           textColor="primary"
         >
-          <Tab label="All" value="All" />
+          <Tab label="All" value="All" sx={LayoutStyle.tabLabel}/>
           {tagList.map((ele, i) => (
             <Tab
               sx={LayoutStyle.tabLabel}
@@ -44,21 +43,23 @@ export default function PostFilter({
           ))}
         </TabList>
         <TabPanel value="All">
-          {postList?.map((ele) => (
-            <div key={ele.id}>
-              {ele.title} <br />
-              {ele.article}
-            </div>
-          ))}
+          <ul style={LayoutStyle.li}>
+            {postList?.map((ele) => (
+              <li key={ele.id}>
+                <Post article={ele} />
+              </li>
+            ))}
+          </ul>
         </TabPanel>
         {tagList.map((ele) => (
           <TabPanel value={ele} key={ele}>
-            {visualizedList?.map((ele) => (
-              <div key={ele.id}>
-                {ele.title} <br />
-                {ele.article}
-              </div>
-            ))}
+            <ul style={LayoutStyle.li}>
+              {visualizedList?.map((ele) => (
+                <li key={ele.id}>
+                  <Post article={ele} />
+                </li>
+              ))}
+            </ul>
           </TabPanel>
         ))}
       </TabContext>
