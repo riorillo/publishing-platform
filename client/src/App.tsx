@@ -5,8 +5,6 @@ import { ThemeProvider } from '@mui/material'
 import { Layout } from './components/Layout'
 
 import { theme } from './styles/theme'
-
-
 export function App() {
   return (
     <ThemeProvider theme={theme}>
