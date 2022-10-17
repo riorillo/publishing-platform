@@ -1,11 +1,10 @@
-import { ThemeProvider } from '@mui/material'
 import React from 'react'
+import { ThemeProvider } from '@mui/material'
+
 import { Routes, Route } from 'react-router-dom'
 import { Layout } from './components/Layout'
 
 import { theme } from './styles/theme'
-
-
 export function App() {
   return (
     <ThemeProvider theme={theme}>
