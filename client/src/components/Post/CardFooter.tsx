@@ -2,17 +2,17 @@ import { styles } from "./style";
 import { Box } from "@mui/system";
 
 type Props = {
-  topic: string;
+  tag: string;
   readingTime: string;
 };
-export function CardFooter({ topic, readingTime }: Props) {
+export function CardFooter({ tag, readingTime }: Props) {
   return (
     <>
       <Box sx={styles.CardFooter.layout}>
-        {topic ? (
+        {tag ? (
           <Box sx={styles.CardFooter.details}>
-            {topic}
-            {/* Questo box sarà showato solamente se la notizia riportata avrà un topic specificato, il contenuto del tag sarà appunto il topic */}
+            {tag}
+            {/* Questo box sarà showato solamente se la notizia riportata avrà un tag specificato, il contenuto del tag sarà appunto il topic */}
           </Box>
         ) : null}
         <Box>
