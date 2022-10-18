@@ -17,8 +17,8 @@ const toolbarOptions = [
 const TextEditor: React.FC<{
   title: string;
   body: string;
-  setTitle: React.Dispatch<React.SetStateAction<string>>;
-  setBody: React.Dispatch<React.SetStateAction<string>>;
+  setTitle: (content: any, delta: any, source: any, editor: any) => void;
+  setBody: (content: any, delta: any, source: any, editor: any) => void;
 }> = ({ title, body, setTitle, setBody }) => {
   return (
     <>
