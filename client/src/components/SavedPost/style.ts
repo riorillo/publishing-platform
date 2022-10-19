@@ -2,8 +2,8 @@ import { customTheme } from "../../styles/theme";
 
 const LayoutStyle = {
   box: {
-    width: "100%",
     maxWidth: "700px",
+    width: "100%",
     display: "flex",
     margin: "auto",
     flexDirection: "column",
@@ -18,10 +18,17 @@ const LayoutStyle = {
     letterSpacing: "0",
     fontSize: customTheme.sizes.large
   },
+  tabList:{
+    width: "100%",
+  },
   tabLabel: {
     display: "flex",
     marginRight: "1rem",
     textAlign: "left"
+  },
+  tabPanel:{
+    paddingLeft: "0",
+    paddingRight: "0"
   },
   li:{
     listStyleType: "none"

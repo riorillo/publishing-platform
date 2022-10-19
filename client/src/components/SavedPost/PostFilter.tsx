@@ -22,7 +22,7 @@ export default function PostFilter({
   postList,
 }: Props) {
   return (
-    <Box maxWidth="700px">
+    <Box sx={LayoutStyle.box}>
       <TabContext value={visualized}>
         <TabList
           value={visualized}
@@ -30,6 +30,7 @@ export default function PostFilter({
           scrollButtons="auto"
           onChange={handleChange}
           textColor="primary"
+          sx={LayoutStyle.tabList}
         >
           <Tab label="All" value="All" sx={LayoutStyle.tabLabel}/>
           {tagList.map((ele, i) => (
@@ -41,7 +42,7 @@ export default function PostFilter({
             />
           ))}
         </TabList>
-        <TabPanel value="All">
+        <TabPanel sx={LayoutStyle.tabPanel}value="All">
           <ul style={LayoutStyle.li}>
             {postList?.map((ele) => (
               <li key={ele.id}>
