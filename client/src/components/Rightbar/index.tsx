@@ -2,6 +2,7 @@ import {
   alpha,
   Avatar,
   Box,
+  Button,
   Divider,
   InputBase,
   List,
@@ -29,7 +30,7 @@ const StyledRightbar = styled(Box)({
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
   // borderRadius: theme.shape.borderRadius,
-  borderRadius: theme.shape.borderRadius,
+  borderRadius: "20px",
   border: "1px solid  lightgray",
   backgroundColor: alpha(theme.palette.common.white, 0.15),
   "&:hover": {
@@ -80,7 +81,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 const Rightbar = () => {
   return (
     <StyledRightbar>
-      <Search>
+      <Search sx={{ mt: "40px" }}>
         <SearchIconWrapper>
           <SearchIcon />
         </SearchIconWrapper>
@@ -89,7 +90,7 @@ const Rightbar = () => {
           inputProps={{ "aria-label": "search" }}
         />
       </Search>
-      <Typography variant="h6" fontWeight={100} mt={4} ml={2}>
+      <Typography variant="h6" fontWeight={100} mt={4} ml={3}>
         Staff Picks
       </Typography>
       <List sx={{ width: "100%", maxWidth: 360, bgcolor: "background.paper" }}>
@@ -163,6 +164,123 @@ const Rightbar = () => {
                   Sandra Adams
                 </Typography> */}
                 {"Do you have Paris recommendations? Have you ever…"}
+              </React.Fragment>
+            }
+          />
+        </ListItem>
+      </List>
+      <Divider />
+      <Typography variant="h6" fontWeight={100} mt={4} ml={3}>
+        Recommended Topics
+      </Typography>
+
+      <Typography variant="h6" fontWeight={100} mt={4} ml={3}>
+        Who to follow
+      </Typography>
+      <List sx={{ width: "100%", maxWidth: 360, bgcolor: "background.paper" }}>
+        <ListItem alignItems="flex-start">
+          <ListItemAvatar>
+            <Avatar
+              alt="User4"
+              src="https://www.mtsolar.us/wp-content/uploads/2020/04/avatar-placeholder.png"
+            />
+          </ListItemAvatar>
+          <ListItemText
+            primary="User 4"
+            secondary={
+              <React.Fragment>
+                {/* <Typography
+                  sx={{ display: "inline" }}
+                  component="span"
+                  variant="body2"
+                  color="text.primary"
+                >
+                  Ali Connors
+                </Typography> */}
+                {"I am a traveler. Photographer. Writer. Teacher. Skydiving"}
+                <Button
+                  variant="outlined"
+                  sx={{
+                    borderRadius: "20px",
+                    marginLeft: "200px",
+                    color: "gray",
+                    borderColor: "gray",
+                  }}
+                >
+                  Follow
+                </Button>
+              </React.Fragment>
+            }
+          />
+        </ListItem>
+        <Divider variant="inset" component="li" />
+        <ListItem alignItems="flex-start">
+          <ListItemAvatar>
+            <Avatar
+              alt="User 5"
+              src="https://www.mtsolar.us/wp-content/uploads/2020/04/avatar-placeholder.png"
+            />
+          </ListItemAvatar>
+          <ListItemText
+            primary="User 5"
+            secondary={
+              <React.Fragment>
+                {/* <Typography
+                  sx={{ display: "inline" }}
+                  component="span"
+                  variant="body2"
+                  color="text.primary"
+                >
+                  to Scott, Alex, Jennifer
+                </Typography> */}
+                {"The first decentralized lending protocol powered by Oasis."}
+                <Button
+                  variant="outlined"
+                  sx={{
+                    borderRadius: "20px",
+                    marginLeft: "200px",
+                    color: "gray",
+                    borderColor: "gray",
+                  }}
+                >
+                  Follow
+                </Button>
+              </React.Fragment>
+            }
+          />
+        </ListItem>
+        <Divider variant="inset" component="li" />
+        <ListItem alignItems="flex-start">
+          <ListItemAvatar>
+            <Avatar
+              alt="User 6"
+              src="https://www.mtsolar.us/wp-content/uploads/2020/04/avatar-placeholder.png"
+            />
+          </ListItemAvatar>
+          <ListItemText
+            primary="User 6"
+            secondary={
+              <React.Fragment>
+                {/* <Typography
+                  sx={{ display: "inline" }}
+                  component="span"
+                  variant="body2"
+                  color="text.primary"
+                >
+                  Sandra Adams
+                </Typography> */}
+                {"I am an AWS serverless hero and cloud architect with a..."}
+                <Button
+                  variant="outlined"
+                  sx={{
+                    borderRadius: "20px",
+                    marginLeft: "200px",
+                    color: "gray",
+                    borderColor: "gray",
+                  }}
+                >
+                  Follow
+                </Button>
               </React.Fragment>
             }
           />
