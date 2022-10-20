@@ -3,7 +3,6 @@ import PostFilter from "../SavedPost/PostFilter";
 import { Article, exampleArray, exampleTabs } from "../SavedPost/mockArticle";
 import { Box } from "@mui/system";
 import LayoutStyle from "../SavedPost/style";
-import AddTopic from "./AddTopic";
 
 export default function NewsFeed() {
   const [visualized, setVisualized] = useState("All");
