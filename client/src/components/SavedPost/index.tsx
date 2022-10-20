@@ -1,5 +1,5 @@
 import { Box, Typography } from "@mui/material";
-import React, { SyntheticEvent, useEffect, useState } from "react";
+import { SyntheticEvent, useEffect, useState } from "react";
 import { Article } from "./mockArticle";
 import PostFilter from "./PostFilter";
 import LayoutStyle from "./style";

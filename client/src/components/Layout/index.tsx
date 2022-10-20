@@ -1,24 +1,28 @@
-import { Outlet } from 'react-router-dom'
-import  { Box,Grid,ThemeOptions,useTheme } from "@mui/material"
-import { LeftSidebar } from '../LeftSidebar'
-import LayoutStyle from './style'
-
+import { Outlet } from "react-router-dom";
+import { Grid } from "@mui/material";
+import { LeftSidebar } from "../LeftSidebar";
+import LayoutStyle from "./style";
+import { Container } from "@mui/system";
+import Placeholder from "../Placeholder";
 
 export const Layout = () => {
-  const theme = useTheme<ThemeOptions>()
+  const { navbar, sidebar, container, gridContainer } = LayoutStyle;
+
   return (
-    <Box sx={LayoutStyle.box}>
-        <Grid container >
-          <Grid item xs={2}>
-           <LeftSidebar /> 
-          </Grid>
-          <Grid item xs={8}>
-            <Outlet /> 
-          </Grid>
-          <Grid item xs={2}>
-            <div className='sidebar' >This is the right sidebar</div> 
-          </Grid>
-        </Grid>      
-    </Box>   
-  )
-}
+    <Container disableGutters sx={container}>
+      <Grid container columns={12} sx={gridContainer}>
+        <Grid item xs={0.75} sx={navbar}>
+          <LeftSidebar />
+        </Grid>
+
+        <Grid item xs={8}>
+          <Outlet />
+        </Grid>
+
+        <Grid item xs={3.25} sx={sidebar}>
+          <Placeholder />
+        </Grid>
+      </Grid>
+    </Container>
+  );
+};

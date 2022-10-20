@@ -1,35 +1,60 @@
-import React from "react"
-import { Avatar, Container } from '@mui/material';
-import HomeOutlinedIcon from '@mui/icons-material/HomeOutlined';
-import BookmarksOutlinedIcon from '@mui/icons-material/BookmarksOutlined';
-import ArticleOutlinedIcon from '@mui/icons-material/ArticleOutlined';
-import NoteAddOutlinedIcon from '@mui/icons-material/NoteAddOutlined';
-import { NavLink } from 'react-router-dom'
+import { Avatar, Box, Container } from "@mui/material";
+import { NavLink, useLocation } from "react-router-dom";
 import LeftSidebarStyle from "./style";
+import Logo from "../Logo";
+import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
+import HomeIcon from "@mui/icons-material/Home";
+import BookmarksIcon from "@mui/icons-material/Bookmarks";
+import BookmarksOutlinedIcon from "@mui/icons-material/BookmarksOutlined";
+import ArticleOutlinedIcon from "@mui/icons-material/ArticleOutlined";
+import ArticleIcon from "@mui/icons-material/Article";
+import CreateOutlinedIcon from "@mui/icons-material/CreateOutlined";
 
 export const LeftSidebar = () => {
-    return (
-    <Container sx={LeftSidebarStyle.container}>
-        
-        <NavLink title="" to="/">
-          <svg viewBox="0 0 1043.63 592.71" height="25" width="60"><g data-name="Layer 2"><g data-name="Layer 1"><path d="M588.67 296.36c0 163.67-131.78 296.35-294.33 296.35S0 460 0 296.36 131.78 0 294.34 0s294.33 132.69 294.33 296.36M911.56 296.36c0 154.06-65.89 279-147.17 279s-147.17-124.94-147.17-279 65.88-279 147.16-279 147.17 124.9 147.17 279M1043.63 296.36c0 138-23.17 249.94-51.76 249.94s-51.75-111.91-51.75-249.94 23.17-249.94 51.75-249.94 51.76 111.9 51.76 249.94"></path></g></g></svg> 
-        </NavLink>
-        <div style={{display: "flex", flexDirection: "column"}}>
-        <NavLink title="" to="/">
-          <HomeOutlinedIcon sx={{fill: "black"}}/>
-        </NavLink>
-        <NavLink title="" to="/me/saved">
-          <BookmarksOutlinedIcon />
-        </NavLink>
-        <NavLink title="" to="/me/stories">
-          <ArticleOutlinedIcon />
-        </NavLink>
-        <NavLink title="" to="/new-story">
-          <NoteAddOutlinedIcon />
-        </NavLink>
-        </div>
-        <Avatar children={<p>LC</p>}/>        
-    </Container>)
+  const { pathname } = useLocation();
+  const { icon, container, box } = LeftSidebarStyle;
 
-}
+  return (
+    <Container sx={container}>
+      <NavLink title="" to="/">
+        <Logo />
+      </NavLink>
 
+      <Box sx={box}>
+        <NavLink title="Home" to="/">
+          {pathname === "/" ? (
+            <HomeIcon sx={icon} />
+          ) : (
+            <HomeOutlinedIcon sx={icon} />
+          )}
+        </NavLink>
+
+        <NavLink title="Saved" to="/me/saved">
+          {pathname === "/me/saved" ? (
+            <BookmarksIcon sx={icon} />
+          ) : (
+            <BookmarksOutlinedIcon sx={icon} />
+          )}
+        </NavLink>
+
+        <NavLink title="Stories" to="/me/stories">
+          {pathname === "/me/stories" ? (
+            <ArticleIcon sx={icon} />
+          ) : (
+            <ArticleOutlinedIcon sx={icon} />
+          )}
+        </NavLink>
+
+        <hr />
+
+        <NavLink title="New story" to="/new-story">
+          <CreateOutlinedIcon sx={icon} />
+        </NavLink>
+      </Box>
+
+      <Avatar>
+        <p>LC</p>
+      </Avatar>
+    </Container>
+  );
+};
