@@ -1,6 +1,6 @@
 import { Box, Typography } from "@mui/material";
 
-const Placeholder = () => {
+const Rightbar = () => {
   return (
     <Box sx={{ border: "3px solid black", p: 2 }}>
       <Typography>
@@ -10,4 +10,4 @@ const Placeholder = () => {
   );
 };
 
-export default Placeholder;
+export default Rightbar;
