@@ -3,7 +3,7 @@ export type Article = {
     id: number;
     username: string;
     publishedAt: string;
-    tag: string;
+    topic: string;
     article: string;
     imageUrl: string;
     description: string;
@@ -22,7 +22,7 @@ export type Article = {
         "Lorem ipsum dolor sit amet consectetur adipisicing elit. A architecto commodi ut nihil non. Magni aspernatur repellat, dicta quibusdam voluptatibus numquam velit officia quam sed et corrupti doloremque quas quos.",
       imageUrl: "https://miro.medium.com/1*W0wM9xIeeIR3_Oo0E_thaA.png",
       readingTime: "5min",
-      tag: "Public",
+      topic: "Public",
       article:
         "Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorem quasi aperiam quidem quibusdam, tenetur distinctio!}",
     },
@@ -36,7 +36,7 @@ export type Article = {
         "Lorem ipsum dolor sit amet consectetur adipisicing elit. A architecto commodi ut nihil non. Magni aspernatur repellat, dicta quibusdam voluptatibus numquam velit officia quam sed et corrupti doloremque quas quos.",
       imageUrl: "https://miro.medium.com/1*W0wM9xIeeIR3_Oo0E_thaA.png",
       readingTime: "5min",
-      tag: "Gaming",
+      topic: "Gaming",
       article:
         "Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorem quasi aperiam quidem quibusdam, tenetur distinctio!}",
     },
@@ -50,7 +50,7 @@ export type Article = {
         "Lorem ipsum dolor sit amet consectetur adipisicing elit. A architecto commodi ut nihil non. Magni aspernatur repellat, dicta quibusdam voluptatibus numquam velit officia quam sed et corrupti doloremque quas quos.",
       imageUrl: "https://miro.medium.com/1*W0wM9xIeeIR3_Oo0E_thaA.png",
       readingTime: "5min",
-      tag: "Public",
+      topic: "Public",
       article:
         "Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorem quasi aperiam quidem quibusdam, tenetur distinctio!}",
     },
@@ -64,7 +64,7 @@ export type Article = {
         "Lorem ipsum dolor sit amet consectetur adipisicing elit. A architecto commodi ut nihil non. Magni aspernatur repellat, dicta quibusdam voluptatibus numquam velit officia quam sed et corrupti doloremque quas quos.",
       imageUrl: "https://miro.medium.com/1*W0wM9xIeeIR3_Oo0E_thaA.png",
       readingTime: "5min",
-      tag: "Public",
+      topic: "Public",
       article:
         "Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorem quasi aperiam quidem quibusdam, tenetur distinctio!}",
     },
@@ -78,7 +78,7 @@ export type Article = {
         "Lorem ipsum dolor sit amet consectetur adipisicing elit. A architecto commodi ut nihil non. Magni aspernatur repellat, dicta quibusdam voluptatibus numquam velit officia quam sed et corrupti doloremque quas quos.",
       imageUrl: "https://miro.medium.com/1*W0wM9xIeeIR3_Oo0E_thaA.png",
       readingTime: "5min",
-      tag: "Gaming",
+      topic: "Gaming",
       article:
         "Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorem quasi aperiam quidem quibusdam, tenetur distinctio!}",
     },
@@ -92,7 +92,7 @@ export type Article = {
         "Lorem ipsum dolor sit amet consectetur adipisicing elit. A architecto commodi ut nihil non. Magni aspernatur repellat, dicta quibusdam voluptatibus numquam velit officia quam sed et corrupti doloremque quas quos.",
       imageUrl: "https://miro.medium.com/1*W0wM9xIeeIR3_Oo0E_thaA.png",
       readingTime: "5min",
-      tag: "Gaming",
+      topic: "Gaming",
       article:
         "Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorem quasi aperiam quidem quibusdam, tenetur distinctio!}",
     },
@@ -106,7 +106,7 @@ export type Article = {
         "Lorem ipsum dolor sit amet consectetur adipisicing elit. A architecto commodi ut nihil non. Magni aspernatur repellat, dicta quibusdam voluptatibus numquam velit officia quam sed et corrupti doloremque quas quos.",
       imageUrl: "https://miro.medium.com/1*W0wM9xIeeIR3_Oo0E_thaA.png",
       readingTime: "5min",
-      tag: "Politic",
+      topic: "Politic",
       article:
         "Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorem quasi aperiam quidem quibusdam, tenetur distinctio!}",
     },
@@ -120,8 +120,12 @@ export type Article = {
         "Lorem ipsum dolor sit amet consectetur adipisicing elit. A architecto commodi ut nihil non. Magni aspernatur repellat, dicta quibusdam voluptatibus numquam velit officia quam sed et corrupti doloremque quas quos.",
       imageUrl: "https://miro.medium.com/1*W0wM9xIeeIR3_Oo0E_thaA.png",
       readingTime: "5min",
-      tag: "Ivan",
+      topic: "Ivan",
       article:
         "Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorem quasi aperiam quidem quibusdam, tenetur distinctio!}",
     },
   ];
+
+export const exampleTabs = ["Public", "Ivan", "Politic", "Gaming"];
+
+export const exampleTopicNotSelected = ["Inter", "Milan", "Juventus", "Napoli", "Catanzaro", "Palermo", "Roma", "Verona", "Acireale", "Latina", "Torino", "Bari", "Genova", "Bologna"]

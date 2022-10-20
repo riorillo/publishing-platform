@@ -27,7 +27,7 @@ export default function Post({ article }: Props) {
         <CardImage imageUrl={article.imageUrl} />
       </CardActionArea>
       <Box sx={styles.FooterContainer}>
-        <CardFooter tag={article.tag} readingTime={article.readingTime} />
+        <CardFooter tag={article.topic} readingTime={article.readingTime} />
         <FooterIcons />
       </Box>
     </Card>

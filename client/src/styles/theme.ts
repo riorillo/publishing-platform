@@ -29,6 +29,9 @@ export const theme = createTheme({
         dark: "#59BA45",
         contrastText: "#000"
       },
+      secondary:{
+        main: "#9e9e9e"
+      }
     },
   })
 
