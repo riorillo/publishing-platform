@@ -1,4 +1,11 @@
-import { Button, Box } from "@mui/material";
+import { Button, Box, styled } from "@mui/material";
+
+const StyledButton = styled(Button)({
+  backgroundColor: "lightgray",
+  borderRadius: "20px",
+  textTransform: "none",
+  "&:hover": { backgroundColor: "darkgray" },
+});
 
 const RecommendedTopics: React.FC<{ topics: string[] }> = ({ topics }) => {
   return (
@@ -7,15 +14,17 @@ const RecommendedTopics: React.FC<{ topics: string[] }> = ({ topics }) => {
         sx={{
           display: "flex",
           flexWrap: "wrap",
-          gap: "10px",
+          gap: "12px",
           ml: 2,
           mt: 2,
+          mb: 4,
+          width: "80%",
         }}
       >
         {topics.map((item, index) => (
-          <Button key={index} variant="contained">
+          <StyledButton key={index} variant="contained">
             {item}
-          </Button>
+          </StyledButton>
         ))}
       </Box>
     </>

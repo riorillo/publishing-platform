@@ -2,13 +2,32 @@ import React from "react";
 import {
   Avatar,
   ListItem,
+  styled,
+  Button,
   ListItemAvatar,
   ListItemText,
   Divider,
 } from "@mui/material";
 import { Link } from "react-router-dom";
 
-const Pick: React.FC<{
+const StyledOutlinedButton = styled(Button)({
+  alignSelf: "center",
+  backgroundColor: "none",
+  color: "gray",
+  border: "1px solid gray",
+  fontSize: "16px",
+  marginLeft: "12px",
+  padding: "2.5px 26px",
+  borderRadius: "20px",
+  textTransform: "none",
+  "&:hover": {
+    backgroundColor: "none",
+    color: "black",
+    border: "1px solid black",
+  },
+});
+
+const UsersToFollow: React.FC<{
   username: string;
   avatar: string;
   title: string;
@@ -51,6 +70,7 @@ const Pick: React.FC<{
             </React.Fragment>
           }
         />
+        <StyledOutlinedButton>Follow</StyledOutlinedButton>
       </ListItem>
       {!isLast && <Divider variant="inset" component="li" />}
       {isLast && <Divider />}
@@ -58,4 +78,4 @@ const Pick: React.FC<{
   );
 };
 
-export default Pick;
+export default UsersToFollow;
