@@ -13,13 +13,11 @@ import {
   Typography,
 } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
+import FiberManualRecordIcon from "@mui/icons-material/FiberManualRecord";
 import React from "react";
-// import {
-//   StyledRightbar,
-//   Search,
-//   SearchIconWrapper,
-//   StyledInputBase,
-// } from "./style";
+import { Link } from "react-router-dom";
+import Pick from "./Pick";
+import RecommendedTopics from "./RecommendedTopics";
 
 const StyledRightbar = styled(Box)({
   display: "flex",
@@ -78,6 +76,29 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 //   // width: "100%",
 // }));
 
+const Topics = ["Ciao", "Hello", "Hi", "Bye", "Arrivederci"];
+
+const StaffPicks = [
+  {
+    username: "User1",
+    avatar:
+      "https://www.mtsolar.us/wp-content/uploads/2020/04/avatar-placeholder.png",
+    title: "Please Consider the Racial Impact of Your Halloween Decor",
+  },
+  {
+    username: "User2",
+    avatar:
+      "https://www.mtsolar.us/wp-content/uploads/2020/04/avatar-placeholder.png",
+    title: "Please Consider the Racial Impact of Your Halloween Decor",
+  },
+  {
+    username: "User3",
+    avatar:
+      "https://www.mtsolar.us/wp-content/uploads/2020/04/avatar-placeholder.png",
+    title: "Please Consider the Racial Impact of Your Halloween Decor",
+  },
+];
+
 const Rightbar = () => {
   return (
     <StyledRightbar>
@@ -90,90 +111,45 @@ const Rightbar = () => {
           inputProps={{ "aria-label": "search" }}
         />
       </Search>
-      <Typography variant="h6" fontWeight={100} mt={4} ml={3}>
-        Staff Picks
-      </Typography>
+      <Box sx={{ display: "flex", alignItems: "center", mt: 4, ml: 3 }}>
+        <Link to="/new-story">
+          <FiberManualRecordIcon
+            fontSize="small"
+            sx={{ fill: "green", mr: 1 }}
+          />
+        </Link>
+        <Link
+          to="/new-story"
+          style={{ textDecoration: "none", color: "black" }}
+        >
+          <Typography
+            paragraph
+            sx={{
+              fontWeight: "bold",
+              fontSize: "24px",
+              mb: "0",
+            }}
+          >
+            Staff Picks
+          </Typography>
+        </Link>
+      </Box>
       <List sx={{ width: "100%", maxWidth: 360, bgcolor: "background.paper" }}>
-        <ListItem alignItems="flex-start">
-          <ListItemAvatar>
-            <Avatar
-              alt="User1"
-              src="https://www.mtsolar.us/wp-content/uploads/2020/04/avatar-placeholder.png"
-            />
-          </ListItemAvatar>
-          <ListItemText
-            primary="User 1"
-            secondary={
-              <React.Fragment>
-                {/* <Typography
-                  sx={{ display: "inline" }}
-                  component="span"
-                  variant="body2"
-                  color="text.primary"
-                >
-                  Ali Connors
-                </Typography> */}
-                {"Please Consider the Racial Impact of Your Halloween Decor"}
-              </React.Fragment>
-            }
+        {StaffPicks.map((item, index) => (
+          <Pick
+            key={index}
+            username={item.username}
+            avatar={item.avatar}
+            title={item.title}
+            isLast={index === StaffPicks.length - 1 ? true : false}
           />
-        </ListItem>
-        <Divider variant="inset" component="li" />
-        <ListItem alignItems="flex-start">
-          <ListItemAvatar>
-            <Avatar
-              alt="User 2"
-              src="https://www.mtsolar.us/wp-content/uploads/2020/04/avatar-placeholder.png"
-            />
-          </ListItemAvatar>
-          <ListItemText
-            primary="User 2"
-            secondary={
-              <React.Fragment>
-                {/* <Typography
-                  sx={{ display: "inline" }}
-                  component="span"
-                  variant="body2"
-                  color="text.primary"
-                >
-                  to Scott, Alex, Jennifer
-                </Typography> */}
-                {"Wish I could come, but I'm out of town this…"}
-              </React.Fragment>
-            }
-          />
-        </ListItem>
-        <Divider variant="inset" component="li" />
-        <ListItem alignItems="flex-start">
-          <ListItemAvatar>
-            <Avatar
-              alt="User 3"
-              src="https://www.mtsolar.us/wp-content/uploads/2020/04/avatar-placeholder.png"
-            />
-          </ListItemAvatar>
-          <ListItemText
-            primary="User 3"
-            secondary={
-              <React.Fragment>
-                {/* <Typography
-                  sx={{ display: "inline" }}
-                  component="span"
-                  variant="body2"
-                  color="text.primary"
-                >
-                  Sandra Adams
-                </Typography> */}
-                {"Do you have Paris recommendations? Have you ever…"}
-              </React.Fragment>
-            }
-          />
-        </ListItem>
+        ))}
       </List>
-      <Divider />
+      {/* <Divider /> */}
       <Typography variant="h6" fontWeight={100} mt={4} ml={3}>
         Recommended Topics
       </Typography>
-
+      <RecommendedTopics topics={Topics} />
       <Typography variant="h6" fontWeight={100} mt={4} ml={3}>
         Who to follow
       </Typography>
