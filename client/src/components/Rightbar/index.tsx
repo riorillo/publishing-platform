@@ -6,6 +6,7 @@ import Pick from "./Pick";
 import RecommendedTopics from "./RecommendedTopics";
 import Searchbar from "./Searchbar";
 import UserToFollow from "./UsersToFollow";
+import Footer from "./Footer";
 
 const StyledRightbar = styled(Box)({
   display: "flex",
@@ -140,6 +141,7 @@ const Rightbar = () => {
           />
         ))}
       </List>
+      <Footer />
     </StyledRightbar>
   );
 };

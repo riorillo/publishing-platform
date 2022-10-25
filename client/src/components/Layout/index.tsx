@@ -19,7 +19,13 @@ export const Layout = () => {
           <Outlet />
         </Grid>
 
-        <Grid item xs={3.25} sx={sidebar}>
+        <Grid
+          item
+          xs={3.25}
+          sx={{
+            sidebar,
+          }}
+        >
           <Rightbar />
         </Grid>
       </Grid>
