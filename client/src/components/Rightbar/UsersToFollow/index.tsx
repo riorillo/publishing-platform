@@ -2,30 +2,12 @@ import React from "react";
 import {
   Avatar,
   ListItem,
-  styled,
-  Button,
   ListItemAvatar,
   ListItemText,
   Divider,
 } from "@mui/material";
 import { Link } from "react-router-dom";
-
-const StyledOutlinedButton = styled(Button)({
-  alignSelf: "center",
-  backgroundColor: "none",
-  color: "gray",
-  border: "1px solid gray",
-  fontSize: "16px",
-  marginLeft: "12px",
-  padding: "2.5px 26px",
-  borderRadius: "20px",
-  textTransform: "none",
-  "&:hover": {
-    backgroundColor: "none",
-    color: "black",
-    border: "1px solid black",
-  },
-});
+import { StyledOutlinedButton } from "./style";
 
 const UsersToFollow: React.FC<{
   username: string;

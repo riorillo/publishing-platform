@@ -20,7 +20,14 @@ const Pick: React.FC<{
       <ListItem alignItems="flex-start">
         <Link to="/">
           <ListItemAvatar>
-            <Avatar alt={username} src={avatar} />
+            <Avatar
+              alt={username}
+              src={avatar}
+              sx={{
+                width: "25px",
+                height: "25px",
+              }}
+            />
           </ListItemAvatar>
         </Link>
         <Link to="/"></Link>

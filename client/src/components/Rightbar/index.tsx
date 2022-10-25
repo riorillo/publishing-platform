@@ -1,18 +1,11 @@
-import { Box, Divider, List, styled, Typography } from "@mui/material";
+import { Box, Divider, List, Typography } from "@mui/material";
 import FiberManualRecordIcon from "@mui/icons-material/FiberManualRecord";
-import React from "react";
 import { Link } from "react-router-dom";
 import Pick from "./Pick";
 import RecommendedTopics from "./RecommendedTopics";
 import Searchbar from "./Searchbar";
 import UserToFollow from "./UsersToFollow";
 import Footer from "./Footer";
-
-const StyledRightbar = styled(Box)({
-  display: "flex",
-  flexDirection: "column",
-  justifyContent: "space-between",
-});
 
 const StaffPicks = [
   {
@@ -69,7 +62,7 @@ const WhoToFollow = [
 
 const Rightbar = () => {
   return (
-    <StyledRightbar>
+    <Box>
       <Searchbar />
       <Box sx={{ display: "flex", alignItems: "center", mt: 4, ml: 3 }}>
         <Link to="/">
@@ -105,8 +98,8 @@ const Rightbar = () => {
       <Typography
         variant="h6"
         fontWeight={100}
-        mt={4}
-        ml={3}
+        mt={2}
+        ml={1}
         sx={{
           fontWeight: "bold",
           fontSize: "20px",
@@ -142,7 +135,7 @@ const Rightbar = () => {
         ))}
       </List>
       <Footer />
-    </StyledRightbar>
+    </Box>
   );
 };
 

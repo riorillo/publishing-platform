@@ -1,19 +1,11 @@
-import { Box, Typography } from "@mui/material";
+import { Typography } from "@mui/material";
 import { Link } from "react-router-dom";
+import { StyledFooter } from "./style";
 
 const Footer = () => {
   return (
     <>
-      <Box
-        sx={{
-          display: "flex",
-          flexWrap: "wrap",
-          gap: "12px",
-          mt: "4px",
-          mr: "12px",
-          width: "100%",
-        }}
-      >
+      <StyledFooter>
         <Link to="/" style={{ textDecoration: "none", color: "gray" }}>
           <Typography
             paragraph
@@ -113,7 +105,7 @@ const Footer = () => {
             Knowable
           </Typography>
         </Link>
-      </Box>
+      </StyledFooter>
     </>
   );
 };
