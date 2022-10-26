@@ -24,7 +24,7 @@ export const Layout = () => {
           xs={3.25}
           sx={{
             sidebar,
-            display: { sm: "none", md: "block" },
+            display: { xs: "none", sm: "none", md: "block" },
           }}
         >
           <Rightbar />
