@@ -3,7 +3,7 @@ import { Grid } from "@mui/material";
 import { LeftSidebar } from "../LeftSidebar";
 import LayoutStyle from "./style";
 import { Container } from "@mui/system";
-import Placeholder from "../Placeholder";
+import Rightbar from "../Rightbar";
 
 export const Layout = () => {
   const { navbar, sidebar, container, gridContainer } = LayoutStyle;
@@ -19,8 +19,15 @@ export const Layout = () => {
           <Outlet />
         </Grid>
 
-        <Grid item xs={3.25} sx={sidebar}>
-          <Placeholder />
+        <Grid
+          item
+          xs={3.25}
+          sx={{
+            sidebar,
+            display: { xs: "none", sm: "none", md: "block" },
+          }}
+        >
+          <Rightbar />
         </Grid>
       </Grid>
     </Container>
