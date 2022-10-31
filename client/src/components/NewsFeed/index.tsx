@@ -5,7 +5,7 @@ import { Box } from "@mui/system";
 import LayoutStyle from "../SavedPost/style";
 
 export default function NewsFeed() {
-  const [visualized, setVisualized] = useState("All");
+  const [visualized, setVisualized] = useState<string>("All");
   const [visualizedList, setVisualizedList] = useState<Article[] | undefined>(
     exampleArray
   );
@@ -26,16 +26,15 @@ export default function NewsFeed() {
   };
 
   return (
-    <Box sx={LayoutStyle.box}>
-      
-      <PostFilter
-        visualizedList={visualizedList}
-        visualized={visualized}
-        handleChange={onChange}
-        topicList={exampleTabs}
-        postList={exampleArray}
-        add={true}
-      />
-    </Box>
+      <Box sx={LayoutStyle.box}>
+        <PostFilter
+          visualizedList={visualizedList}
+          visualized={visualized}
+          handleChange={onChange}
+          topicList={exampleTabs}
+          postList={exampleArray}
+          add={true}
+        />
+      </Box>
   );
 }
