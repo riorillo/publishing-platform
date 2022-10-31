@@ -1,8 +1,12 @@
 import { customTheme } from "../../styles/theme";
 
 const LayoutStyle = {
+  externalBox:{
+    width: "100%"
+  },
   box: {
     maxWidth: "700px",
+    ["@media (max-width: 900px)"]: { maxWidth: "95%" },
     width: "100%",
     display: "flex",
     margin: "auto",
