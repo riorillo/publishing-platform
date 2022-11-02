@@ -72,7 +72,7 @@ export default function Login() {
           </LoadingButton>
           <Typography>
             If you don't have an account yet, click here to
-            <Link to="/register"> register</Link>
+            <Link to="/register"> register.</Link>
           </Typography>
         </form>
         <Modal
@@ -83,10 +83,10 @@ export default function Login() {
         >
           <Box sx={modalStyle}>
             <Typography id="modal-modal-title" variant="h6" component="h2">
-              Wrong Datas!
+              Wrong Credentials!
             </Typography>
             <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-              Sorry we couldn't find an account with that datas. Please try again!
+              Sorry we couldn't find an account that matches your credentials, try again or register <Link to="/register"> here.</Link>
             </Typography>
           </Box>
         </Modal>
