@@ -4,9 +4,12 @@ import { LeftSidebar } from "../LeftSidebar";
 import LayoutStyle from "./style";
 import { Container } from "@mui/system";
 import Rightbar from "../Rightbar";
+import { useEffect } from "react";
 
 export const Layout = () => {
   const { navbar, sidebar, container, gridContainer } = LayoutStyle;
+
+
 
   return (
     <Container disableGutters sx={container}>
