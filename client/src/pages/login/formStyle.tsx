@@ -13,7 +13,7 @@ export const containerFormStyle: any = {
   justifyContent: "center",
 };
 export const paperStyle = {
-  height : { sm: 700, xs: 500 },
+  height: { sm: 700, xs: 650 },
   padding: "20px 30px",
   width: { sm: 500, xs: 300 },
   display: "flex",
@@ -25,7 +25,7 @@ export const modalStyle = {
   top: "50%",
   left: "50%",
   transform: "translate(-50%, -50%)",
-  width: 400,
+  width: {sm : 400, xs : 300},
   bgcolor: "background.paper",
   border: "2px solid #7AC86A",
   borderRadius : "10px",

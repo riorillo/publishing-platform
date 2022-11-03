@@ -8,6 +8,7 @@ import NewStory from "./components/NewStory";
 import NewsFeed from "./components/NewsFeed";
 import Login from "./pages/login/Login";
 import { SetUserContext, UserContext } from "./utils/context";
+import Register from "./pages/register/Register";
 
 export function App() {
   const [userData, setUserData] = useState({});
@@ -32,6 +33,7 @@ export function App() {
               path="/login"
               element={<Login handleLoginData={handleLoginData} />}
             />
+            <Route path="/register" element={<Register />} />
             {/* Non va renderizzato in <Outlet/> di <Layout/> */}
             <Route path="/new-story" element={<NewStory />} />
           </Routes>
