@@ -4,6 +4,7 @@ import { LeftSidebar } from "../LeftSidebar";
 import LayoutStyle from "./style";
 import { Container } from "@mui/system";
 import Rightbar from "../Rightbar";
+import BottomNavbar from "../BottomNavbar";
 
 export const Layout = () => {
   const { navbar, sidebar, container, gridContainer } = LayoutStyle;
@@ -28,6 +29,9 @@ export const Layout = () => {
           }}
         >
           <Rightbar />
+        </Grid>
+        <Grid item xs={2} sx={{ navbar, display: { sm: "block", md: "none" } }}>
+          <BottomNavbar />
         </Grid>
       </Grid>
     </Container>
