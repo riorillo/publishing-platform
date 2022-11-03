@@ -1,7 +1,7 @@
-import { Button, Paper, TextField, Typography } from "@mui/material";
+import { Paper, TextField, Typography } from "@mui/material";
 import { Box } from "@mui/system";
 import React, { useRef, useState } from "react";
-import Logo from "../../components/Logo";
+import Logo from "../../components/Logo/Log_SignInLogo";
 import {
   formStyle,
   containerFormStyle,
@@ -16,8 +16,7 @@ import { LoadingButton } from "@mui/lab";
 export default function Login() {
   const [error, setError] = useState(false);
   const [loading, setLoading] = useState(false);
-
-  const usernameRef = useRef<HTMLInputElement>(null);
+  const formRef = useRef<HTMLFormElement>(null);
 
   function handleFormSubmit(e: any) {
     e.preventDefault();
@@ -32,7 +31,6 @@ export default function Login() {
           password,
         }
       );
-      console.log(fetching);
       if (fetching.status === 200) {
         setLoading(false);
         window.sessionStorage.setItem("token", fetching.data.accessToken);
@@ -40,41 +38,41 @@ export default function Login() {
       }
     }
     login()
-      .catch((err) => setError(true))
-      .finally(() => setLoading(false));
+      .catch(() => setError(true))
+      .finally(() => {
+        if (formRef.current) {
+          formRef.current.reset();
+        }
+        setLoading(false)
+      });
   }
   const handleClose = () => setError(false);
   return (
     <Box sx={containerFormStyle}>
       <Paper elevation={20} sx={paperStyle}>
-        <form onSubmit={handleFormSubmit} style={formStyle}>
+        <Box
+          component="form"
+          onSubmit={handleFormSubmit}
+          style={formStyle}
+          ref={formRef}
+        >
           <Logo />
           <Typography variant="h4">Login </Typography>
-          <TextField
-            label="Name"
-            ref={usernameRef}
-            name="username"
-            error={error}
-          />
-          <TextField
-            name="password"
-            label="Password"
-            type="password"
-            error={error}
-          />
+          <TextField label="Name" name="username" autoFocus />
+          <TextField name="password" label="Password" type="password" />
           <LoadingButton
             type="submit"
             loading={loading}
             variant="outlined"
-            sx={{ border: "1px solid #7AC86A" }}
+            sx={{ border: "2px solid #7AC86A", fontWeight: "bold" }}
           >
             Login
           </LoadingButton>
           <Typography>
             If you don't have an account yet, click here to
-            <Link to="/register"> register.</Link>
+            <Link to="/register"> sign up.</Link>
           </Typography>
-        </form>
+        </Box>
         <Modal
           open={error}
           onClose={handleClose}
@@ -82,11 +80,21 @@ export default function Login() {
           aria-describedby="modal-modal-description"
         >
           <Box sx={modalStyle}>
-            <Typography id="modal-modal-title" variant="h6" component="h2">
+            <Typography
+              id="modal-modal-title"
+              variant="h6"
+              component="h2"
+              sx={{ textAlign: "center" }}
+              color="primary"
+            >
               Wrong Credentials!
             </Typography>
-            <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-              Sorry we couldn't find an account that matches your credentials, try again or register <Link to="/register"> here.</Link>
+            <Typography
+              id="modal-modal-description"
+              sx={{ mt: 2, textAlign: "center" }}
+            >
+              Sorry we couldn't find an account that matches your credentials,
+              try again or sign up <Link to="/register"> here.</Link>
             </Typography>
           </Box>
         </Modal>

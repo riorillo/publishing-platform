@@ -1,22 +1,117 @@
-import { Box } from "@material-ui/core";
+import { Box } from "@mui/system";
 import { Button, Paper, TextField, Typography } from "@mui/material";
-import React from "react";
-import Logo from "../../components/Logo";
-import { formStyle, containerFormStyle, paperStyle } from "./registerStyle";
+import Modal from "@mui/material/Modal";
+import React, { useState } from "react";
+import Logo from "../../components/Logo/Log_SignInLogo";
+import axios from "axios";
+import {
+  formStyle,
+  containerFormStyle,
+  paperStyle,
+  firstBoxStyle,
+  boxesContainer,
+  secondBoxStyle,
+  modalStyle,
+} from "./registerStyle";
+import { Link } from "react-router-dom";
+
 export default function Register() {
+  const [error, setError] = useState(false);
+  function handleRegistration(e: any) {
+    e.preventDefault();
+    const username = e.target.elements.username.value;
+    const name = e.target.elements.name.value;
+    const age = e.target.elements.age.value;
+    const email = e.target.elements.email.value;
+    const password = e.target.elements.password.value;
+    async function register() {
+      try {
+        const fetching = await axios.post(
+          "http://localhost:3001/api/auth/register",
+          {
+            username,
+            email,
+            password,
+            age: parseInt(age),
+            name,
+          }
+        );
+        if (fetching.status === 200) {
+          window.sessionStorage.setItem("token", fetching.data.accessToken);
+        }
+      } catch {
+        setError(true);
+      }
+    }
+    register();
+  }
+  const handleClose = () => setError(false);
   return (
-    <Box sx={containerFormStyle}>
-      <Paper elevation={20} sx={paperStyle}>
-        <form style={formStyle}>
-          <Logo />
-          <Typography variant="h4">Login :</Typography>
-          <TextField label="Name" name="username" />
-          <TextField name="password" label="Password" type="password" />
-          <Button type="submit" sx={{ border: "1px solid #7AC86A" }}>
-            Login
-          </Button>
-        </form>
-      </Paper>
-    </Box>
+    <>
+      <Box sx={containerFormStyle}>
+        <Paper elevation={20} sx={paperStyle}>
+          <Box component="form" onSubmit={handleRegistration} sx={formStyle}>
+            <Logo />
+            <Typography variant="h4">Sign Up </Typography>
+            <Box sx={boxesContainer}>
+              <Box sx={firstBoxStyle}>
+                <TextField label="Username" name="username" required autoFocus/>
+                <TextField label="Name" name="name" required />
+                <TextField type="number" label="Age" name="age" required />
+              </Box>
+              <Box sx={secondBoxStyle}>
+                <TextField label="Email" name="email" type="email" required />
+                <TextField
+                  name="password"
+                  label="Password"
+                  type="password"
+                  required
+                />
+              </Box>
+            </Box>
+            <Button
+              type="submit"
+              sx={{ border: "2px solid #7AC86A", fontWeight: "bold", width : "100px" }}
+            >
+              Sign Up
+            </Button>
+            <Typography
+              sx={{
+                fontSize: { sm: "1rem", xs: "12px" },
+                textAlign: { sm: "start", xs: "center" },
+              }}
+            >
+              Do you already have an account? Login{" "}
+              <Link to="/login"> here</Link>
+            </Typography>
+          </Box>
+        </Paper>
+        <Modal
+          open={error}
+          onClose={handleClose}
+          aria-labelledby="modal-modal-title"
+          aria-describedby="modal-modal-description"
+        >
+          <Box sx={modalStyle}>
+            <Typography
+              id="modal-modal-title"
+              variant="h6"
+              component="h2"
+              color="primary"
+              textAlign="center"
+            >
+              Ops, something went wrong!
+            </Typography>
+            <Typography
+              id="modal-modal-description"
+              sx={{ mt: 2 }}
+              textAlign="center"
+            >
+              There's a problem with the server, please try again later.
+            </Typography>
+          </Box>
+        </Modal>
+      </Box>
+    </>
   );
 }
