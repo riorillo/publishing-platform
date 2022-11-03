@@ -1,4 +1,4 @@
-import { Box } from "@material-ui/core";
+import { Box } from "@mui/system";
 import { Button, Paper, TextField, Typography } from "@mui/material";
 import React from "react";
 import Logo from "../../components/Logo";

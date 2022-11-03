@@ -24,9 +24,10 @@ export default function TopicButton({
     <Button
       size="small"
       onClick={handleClick}
-      variant={selected ? "contained" : "text"}
-      color={selected ? "success" : "secondary"}
-      sx={{ borderRadius: "1.5rem" }}
+      variant="contained"
+      color={selected ? "success" : "inherit"}
+      
+      sx={{ boxSizing:"border-box", borderRadius: "1.5rem", margin:".3rem .4rem" }}
     >
       {content}
     </Button>

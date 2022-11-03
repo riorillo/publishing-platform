@@ -1,6 +1,6 @@
-import { Button, Paper, TextField, Typography } from "@mui/material";
+import { Paper, TextField, Typography } from "@mui/material";
 import { Box } from "@mui/system";
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Logo from "../../components/Logo";
 import {
   formStyle,
@@ -12,12 +12,24 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import Modal from "@mui/material/Modal";
 import { LoadingButton } from "@mui/lab";
+import AddTopic from "../../components/NewsFeed/AddTopic";
 
-export default function Login() {
+type Props={
+  handleLoginData: (user:any)=>void
+}
+
+export default function Login({handleLoginData}:Props) {
   const [error, setError] = useState(false);
   const [loading, setLoading] = useState(false);
 
   const usernameRef = useRef<HTMLInputElement>(null);
+  // modal customization
+  const modalParameters = {
+    textDisplayed: "Next",
+    numberOfTopicRequired: 3,
+    titleText: "Please Select at least 3 topic",
+    closeTextDisplayed: "Register",
+  };
 
   function handleFormSubmit(e: any) {
     e.preventDefault();
@@ -86,11 +98,15 @@ export default function Login() {
               Wrong Credentials!
             </Typography>
             <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-              Sorry we couldn't find an account that matches your credentials, try again or register <Link to="/register"> here.</Link>
+              Sorry we couldn't find an account that matches your credentials,
+              try again or register <Link to="/register"> here.</Link>
             </Typography>
           </Box>
         </Modal>
       </Paper>
+      <Box sx={{ border: "1px solid #7AC86A", borderRadius: "4px" }}>
+        <AddTopic {...modalParameters} />
+      </Box>
     </Box>
   );
 }
