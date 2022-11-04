@@ -13,7 +13,11 @@ import LayoutStyle from "./style";
 import TopicButton from "../TopicButton";
 import { Box } from "@mui/system";
 import axios from "axios";
-import { SetUserContext, UserContext, UserContextType } from "../../utils/context";
+import {
+  SetUserContext,
+  UserContext,
+  UserContextType,
+} from "../../utils/context";
 
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
   "& .MuiDialogContent-root": {
@@ -62,6 +66,7 @@ interface Props {
   titleText?: string;
   numberOfTopicRequired?: number;
   elementList?: string[];
+  submitVariant?: any;
 }
 
 export default function AddTopic({
@@ -70,11 +75,12 @@ export default function AddTopic({
   elementList = [],
   numberOfTopicRequired = 0,
   closeTextDisplayed,
+  submitVariant,
 }: Props) {
   const [open, setOpen] = useState(false);
   const [topicListToAdd, setTopicListToAdd] = useState<string[]>([]);
   const user = useContext<UserContextType>(UserContext);
-  const setUser = useContext(SetUserContext)
+  const setUser = useContext(SetUserContext);
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -82,7 +88,12 @@ export default function AddTopic({
   const handleClose = () => {
     setOpen(false);
 
-    handleSubmitChanges();
+    if (submitVariant) {
+      submitVariant(topicListToAdd);
+      setTopicListToAdd([]);
+    } else {
+      handleSubmitChanges();
+    }
   };
 
   const handleAddTopic = (topic: string) => {
@@ -108,7 +119,7 @@ export default function AddTopic({
           },
         }
       );
-      setUser({...user, topics: user.topics?.concat(topicListToAdd)})
+      setUser({ ...user, topics: user.topics?.concat(topicListToAdd) });
       setTopicListToAdd([]);
     };
     pushingData();
@@ -142,7 +153,7 @@ export default function AddTopic({
         <DialogActions>
           <Button
             autoFocus
-            disabled={elementList.length < numberOfTopicRequired ? true : false}
+            disabled={topicListToAdd.length < numberOfTopicRequired}
             onClick={handleClose}
           >
             {closeTextDisplayed ? closeTextDisplayed : "Save changes"}
