@@ -2,7 +2,7 @@ import { TabContext, TabList, TabPanel } from "@mui/lab";
 import { Tab } from "@mui/material";
 import { Box } from "@mui/system";
 import React from "react";
-import AddTag from "../NewsFeed/AddTopic";
+import AddTopic from "../NewsFeed/AddTopic";
 import Post from "../Post";
 import { Article } from "./mockArticle";
 import LayoutStyle from "./style";
@@ -14,6 +14,7 @@ type Props = {
   postList: Article[],
   visualizedList?: Article[],
   add?: boolean,
+  addTopicList?: string[]
 };
 
 export default function PostFilter({
@@ -22,7 +23,8 @@ export default function PostFilter({
   handleChange,
   topicList,
   postList,
-  add
+  add,
+  addTopicList
 }: Props) {
 
   return (
@@ -36,14 +38,14 @@ export default function PostFilter({
           textColor="primary"
           sx={LayoutStyle.tabList}
         >
-         {add && <AddTag />}
+         {add && <AddTopic elementList={addTopicList} titleText="Add some topic" />}
           <Tab label="All" value="All" sx={LayoutStyle.tabLabel}/>
-          {topicList.map((ele, i) => (
+          {topicList.map((ele) => (
             <Tab
               sx={LayoutStyle.tabLabel}
-              key={topicList[i]}
-              label={topicList[i]}
-              value={topicList[i]}
+              key={ele}
+              label={ele}
+              value={ele}
             />
           ))}
         </TabList>
@@ -59,8 +61,8 @@ export default function PostFilter({
         {topicList.map((ele) => (
           <TabPanel sx={LayoutStyle.tabPanel} value={ele} key={ele}>
             <ul style={LayoutStyle.li}>
-              {visualizedList?.map((ele) => (
-                <li key={ele.id}>
+              {postList?.map((ele,i) => (
+                <li key={i}>
                   <Post article={ele} />
                 </li>
               ))}

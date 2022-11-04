@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext, useEffect } from "react";
 import { useState } from "react";
 import AddIcon from "@mui/icons-material/Add";
 import Button from "@mui/material/Button";
@@ -11,7 +11,13 @@ import IconButton from "@mui/material/IconButton";
 import CloseIcon from "@mui/icons-material/Close";
 import LayoutStyle from "./style";
 import TopicButton from "../TopicButton";
-import { exampleTopicNotSelected } from "../SavedPost/mockArticle";
+import { Box } from "@mui/system";
+import axios from "axios";
+import {
+  SetUserContext,
+  UserContext,
+  UserContextType,
+} from "../../utils/context";
 
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
   "& .MuiDialogContent-root": {
@@ -54,9 +60,27 @@ function BootstrapDialogTitle({
   );
 }
 
-export default function AddTopic() {
+interface Props {
+  textDisplayed?: string;
+  closeTextDisplayed?: string;
+  titleText?: string;
+  numberOfTopicRequired?: number;
+  elementList?: string[];
+  submitVariant?: any;
+}
+
+export default function AddTopic({
+  textDisplayed,
+  titleText,
+  elementList = [],
+  numberOfTopicRequired = 0,
+  closeTextDisplayed,
+  submitVariant,
+}: Props) {
   const [open, setOpen] = useState(false);
   const [topicListToAdd, setTopicListToAdd] = useState<string[]>([]);
+  const user = useContext<UserContextType>(UserContext);
+  const setUser = useContext(SetUserContext);
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -64,31 +88,47 @@ export default function AddTopic() {
   const handleClose = () => {
     setOpen(false);
 
-    handleSubmitChanges();
+    if (submitVariant) {
+      submitVariant(topicListToAdd);
+      setTopicListToAdd([]);
+    } else {
+      handleSubmitChanges();
+    }
   };
 
   const handleAddTopic = (topic: string) => {
     setTopicListToAdd((prev: string[]) => {
-      console.log(topicListToAdd);
       return [...prev, topic];
     });
   };
 
   const handleRemoveTopic = (topic: string) => {
     setTopicListToAdd((prev: string[]) => prev.filter((ele) => ele !== topic));
-    console.log(topicListToAdd);
   };
 
   const handleSubmitChanges = () => {
-    // qui ci sarà la funzione per inviare i topic al DB
-
-    setTopicListToAdd([])
-  }
+    const pushingData = async () => {
+      await axios.put(
+        `http://localhost:3001/api/topics/${user.id}`,
+        {
+          topics: topicListToAdd,
+        },
+        {
+          headers: {
+            token: `Bearer ${user.accessToken}`,
+          },
+        }
+      );
+      setUser({ ...user, topics: user.topics?.concat(topicListToAdd) });
+      setTopicListToAdd([]);
+    };
+    pushingData();
+  };
 
   return (
     <div>
       <Button sx={LayoutStyle.button} variant="text" onClick={handleClickOpen}>
-        <AddIcon />
+        {textDisplayed ? textDisplayed : <AddIcon />}
       </Button>
       <BootstrapDialog
         onClose={handleClose}
@@ -96,10 +136,12 @@ export default function AddTopic() {
         open={open}
       >
         <BootstrapDialogTitle id="add-topic-title" onClose={handleClose}>
-          Add some preference
+          <Box sx={{ marginRight: "2.8rem" }}>
+            {titleText ? titleText : "Add some preference"}
+          </Box>
         </BootstrapDialogTitle>
         <DialogContent dividers>
-          {exampleTopicNotSelected.map((ele, index) => (
+          {elementList?.map((ele, index) => (
             <TopicButton
               key={index}
               handleRemove={handleRemoveTopic}
@@ -109,8 +151,12 @@ export default function AddTopic() {
           ))}
         </DialogContent>
         <DialogActions>
-          <Button autoFocus onClick={handleClose}>
-            Save changes
+          <Button
+            autoFocus
+            disabled={topicListToAdd.length < numberOfTopicRequired}
+            onClick={handleClose}
+          >
+            {closeTextDisplayed ? closeTextDisplayed : "Save changes"}
           </Button>
         </DialogActions>
       </BootstrapDialog>
