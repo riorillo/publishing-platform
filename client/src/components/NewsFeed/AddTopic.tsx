@@ -11,9 +11,9 @@ import IconButton from "@mui/material/IconButton";
 import CloseIcon from "@mui/icons-material/Close";
 import LayoutStyle from "./style";
 import TopicButton from "../TopicButton";
-import { exampleTopicNotSelected } from "../SavedPost/mockArticle";
-import { fetchDataFromServer } from "../../utils/service";
-import { UserContext } from "../../utils/context";
+import { Box } from "@mui/system";
+import axios from "axios";
+import { SetUserContext, UserContext, UserContextType } from "../../utils/context";
 
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
   "& .MuiDialogContent-root": {
@@ -61,33 +61,20 @@ interface Props {
   closeTextDisplayed?: string;
   titleText?: string;
   numberOfTopicRequired?: number;
-  elementList?: [];
+  elementList?: string[];
 }
 
 export default function AddTopic({
   textDisplayed,
   titleText,
-  elementList,
+  elementList = [],
   numberOfTopicRequired = 0,
   closeTextDisplayed,
 }: Props) {
   const [open, setOpen] = useState(false);
   const [topicListToAdd, setTopicListToAdd] = useState<string[]>([]);
-  const [topics, setTopics] = useState([]);
-  const user = useContext(UserContext);
-
-  //FETCH TOPICS
-  useEffect(() => {
-    const retriveData = async () => {
-      try {
-        const data = await fetchDataFromServer("topics");
-        setTopics(data?.data);
-      } catch (err) {
-        console.error(err);
-      }
-    };
-    retriveData();
-  }, []);
+  const user = useContext<UserContextType>(UserContext);
+  const setUser = useContext(SetUserContext)
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -109,9 +96,22 @@ export default function AddTopic({
   };
 
   const handleSubmitChanges = () => {
-    // qui ci sarà la funzione per inviare i topic al DB
-
-    setTopicListToAdd([]);
+    const pushingData = async () => {
+      await axios.put(
+        `http://localhost:3001/api/topics/${user.id}`,
+        {
+          topics: topicListToAdd,
+        },
+        {
+          headers: {
+            token: `Bearer ${user.accessToken}`,
+          },
+        }
+      );
+      setUser({...user, topics: user.topics?.concat(topicListToAdd)})
+      setTopicListToAdd([]);
+    };
+    pushingData();
   };
 
   return (
@@ -125,10 +125,12 @@ export default function AddTopic({
         open={open}
       >
         <BootstrapDialogTitle id="add-topic-title" onClose={handleClose}>
-          {titleText ? titleText : "Add some preference"}
+          <Box sx={{ marginRight: "2.8rem" }}>
+            {titleText ? titleText : "Add some preference"}
+          </Box>
         </BootstrapDialogTitle>
         <DialogContent dividers>
-          {topics?.map((ele, index) => (
+          {elementList?.map((ele, index) => (
             <TopicButton
               key={index}
               handleRemove={handleRemoveTopic}
@@ -140,7 +142,7 @@ export default function AddTopic({
         <DialogActions>
           <Button
             autoFocus
-            disabled={topicListToAdd.length < numberOfTopicRequired ? true : false}
+            disabled={elementList.length < numberOfTopicRequired ? true : false}
             onClick={handleClose}
           >
             {closeTextDisplayed ? closeTextDisplayed : "Save changes"}

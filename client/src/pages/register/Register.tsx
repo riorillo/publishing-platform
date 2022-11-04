@@ -1,7 +1,7 @@
 import { Box } from "@mui/system";
 import { Button, Paper, TextField, Typography } from "@mui/material";
 import Modal from "@mui/material/Modal";
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import Logo from "../../components/Logo/Log_SignInLogo";
 import axios from "axios";
 import {
@@ -14,9 +14,30 @@ import {
   modalStyle,
 } from "./registerStyle";
 import { Link } from "react-router-dom";
+import AddTopic from "../../components/NewsFeed/AddTopic";
+import { UserContext, UserContextType } from "../../utils/context";
+
+export type ModalProps={
+  textDisplayed?: string,
+    numberOfTopicRequired?: 3,
+    titleText?: string,
+    closeTextDisplayed?: string,
+    elementList?: string[]
+}
 
 export default function Register() {
   const [error, setError] = useState(false);
+  const user = useContext<UserContextType>(UserContext)
+
+  // modal customization
+  const modalParameters: ModalProps = {
+    textDisplayed: "Next",
+    numberOfTopicRequired: 3,
+    titleText: user.topics ? "Please Select at least 3 topic" : "Loading...",
+    closeTextDisplayed: "Register",
+    // elementList: user.topics
+    };
+
   function handleRegistration(e: any) {
     e.preventDefault();
     const username = e.target.elements.username.value;
@@ -111,6 +132,8 @@ export default function Register() {
             </Typography>
           </Box>
         </Modal>
+        <AddTopic {...modalParameters}  />
+
       </Box>
     </>
   );
