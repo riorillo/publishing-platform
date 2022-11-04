@@ -1,7 +1,7 @@
 import { Box } from "@mui/system";
 import { Button, Paper, TextField, Typography } from "@mui/material";
 import Modal from "@mui/material/Modal";
-import React, { useState } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import Logo from "../../components/Logo/Log_SignInLogo";
 import axios from "axios";
 import {
@@ -14,11 +14,48 @@ import {
   modalStyle,
 } from "./registerStyle";
 import { Link } from "react-router-dom";
+import AddTopic from "../../components/NewsFeed/AddTopic";
+import { UserContext, UserContextType } from "../../utils/context";
+
+export type ModalProps = {
+  textDisplayed?: string;
+  numberOfTopicRequired?: 3;
+  titleText?: string;
+  closeTextDisplayed?: string;
+  elementList?: string[];
+  submitVariant?: any;
+};
 
 export default function Register() {
   const [error, setError] = useState(false);
+  const user = useContext<UserContextType>(UserContext);
+  const [topics, setTopics] = useState([]);
+  const [topicsToAdd, setTopicsToAdd] = useState<string[]>([]);
+
+  // modal customization
+  const modalParameters: ModalProps = {
+    textDisplayed: "Select at least 3 topics *",
+    numberOfTopicRequired: 3,
+    titleText: user.topics ? "Please Select at least 3 topic" : "Loading...",
+    closeTextDisplayed: "Done",
+    submitVariant: handleTopicsToAdd,
+  };
+
+  useEffect(() => {
+    const loadTopics = async () => {
+      const topicsList = await axios.get("http://localhost:3001/api/topics");
+      setTopics(topicsList.data);
+    };
+    loadTopics();
+  }, []);
+
+  function handleTopicsToAdd(topicsArray: string[]) {
+    setTopicsToAdd(topicsArray);
+  }
+
   function handleRegistration(e: any) {
     e.preventDefault();
+    if (topicsToAdd.length < 3) return;
     const username = e.target.elements.username.value;
     const name = e.target.elements.name.value;
     const age = e.target.elements.age.value;
@@ -34,6 +71,7 @@ export default function Register() {
             password,
             age: parseInt(age),
             name,
+            topics: topicsToAdd,
           }
         );
         if (fetching.status === 200) {
@@ -55,7 +93,12 @@ export default function Register() {
             <Typography variant="h4">Sign Up </Typography>
             <Box sx={boxesContainer}>
               <Box sx={firstBoxStyle}>
-                <TextField label="Username" name="username" required autoFocus/>
+                <TextField
+                  label="Username"
+                  name="username"
+                  required
+                  autoFocus
+                />
                 <TextField label="Name" name="name" required />
                 <TextField type="number" label="Age" name="age" required />
               </Box>
@@ -67,11 +110,20 @@ export default function Register() {
                   type="password"
                   required
                 />
+                <Box sx={{height: "56px", display: "flex"}}>
+
+                <AddTopic {...modalParameters} elementList={topics} />
+                </Box>
               </Box>
             </Box>
             <Button
               type="submit"
-              sx={{ border: "2px solid #7AC86A", fontWeight: "bold", width : "100px" }}
+              disabled={topicsToAdd.length < 3}
+              sx={{
+                border: "2px solid #7AC86A",
+                fontWeight: "bold",
+                width: "100px",
+              }}
             >
               Sign Up
             </Button>

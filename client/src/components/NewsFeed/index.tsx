@@ -1,15 +1,18 @@
-import React, { SyntheticEvent, useEffect, useState } from "react";
+import React, { SyntheticEvent, useEffect, useContext, useState } from "react";
 import PostFilter from "../SavedPost/PostFilter";
-import { Article, exampleArray, exampleTabs } from "../SavedPost/mockArticle";
+import { Article, exampleArray } from "../SavedPost/mockArticle";
 import { Box } from "@mui/system";
 import LayoutStyle from "../SavedPost/style";
-import axios from "axios"
+import { UserContext, UserContextType } from "../../utils/context";
+import { fetchDataFromServer } from "../../utils/service";
 
 export default function NewsFeed() {
   const [visualized, setVisualized] = useState<string>("All");
   const [visualizedList, setVisualizedList] = useState<Article[] | undefined>(
     exampleArray
   );
+  const [topicToAdd, setTopicToAdd] = useState([]);
+  const user = useContext<UserContextType>(UserContext);
 
   useEffect(() => {
     if (visualized === "All") {
@@ -23,8 +26,17 @@ export default function NewsFeed() {
   }, [visualized]);
 
   useEffect(() => {
-    axios.get("")
-  }, []);
+    if (user.topics) {
+      const fetchingTopicsList = async () => {
+        const topicsData = await fetchDataFromServer("topics");
+        const filteredTopics = topicsData?.data.filter(
+          (el: string) => !user.topics?.includes(el)
+        );
+        setTopicToAdd(filteredTopics);
+      };
+      fetchingTopicsList();
+    }
+  }, [user.topics]);
 
   const onChange = (e: SyntheticEvent, newValue: string): void => {
     setVisualized(newValue);
@@ -36,9 +48,10 @@ export default function NewsFeed() {
         visualizedList={visualizedList}
         visualized={visualized}
         handleChange={onChange}
-        topicList={exampleTabs}
+        topicList={user.topics ? user.topics : []}
         postList={exampleArray}
         add={true}
+        addTopicList={topicToAdd}
       />
     </Box>
   );

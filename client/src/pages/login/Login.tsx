@@ -1,6 +1,6 @@
 import { Paper, TextField, Typography } from "@mui/material";
 import { Box } from "@mui/system";
-import React, { useRef, useState } from "react";
+import React, { useContext, useRef, useState } from "react";
 import Logo from "../../components/Logo/Log_SignInLogo";
 import {
   formStyle,
@@ -12,10 +12,13 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import Modal from "@mui/material/Modal";
 import { LoadingButton } from "@mui/lab";
+import { SetUserContext } from "../../utils/context";
 
 export default function Login() {
   const [error, setError] = useState(false);
   const [loading, setLoading] = useState(false);
+  const handleLoginData = useContext(SetUserContext)
+
   const formRef = useRef<HTMLFormElement>(null);
 
   function handleFormSubmit(e: any) {
@@ -31,6 +34,7 @@ export default function Login() {
           password,
         }
       );
+      handleLoginData(fetching.data)
       if (fetching.status === 200) {
         setLoading(false);
         window.sessionStorage.setItem("token", fetching.data.accessToken);
@@ -99,6 +103,8 @@ export default function Login() {
           </Box>
         </Modal>
       </Paper>
+      <Box sx={{ border: "1px solid #7AC86A", borderRadius: "4px" }}>
+      </Box>
     </Box>
   );
 }
