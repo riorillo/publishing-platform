@@ -4,11 +4,7 @@ import { LeftSidebar } from "../LeftSidebar";
 import LayoutStyle from "./style";
 import { Container } from "@mui/system";
 import Rightbar from "../Rightbar";
-<<<<<<< HEAD
-=======
 import BottomNavbar from "../BottomNavbar";
->>>>>>> 6eab89ad3850d19b334fb993de074dad195e1fad
-
 export const Layout = () => {
   const { navbar, sidebar, container, gridContainer } = LayoutStyle;
 
@@ -21,8 +17,8 @@ export const Layout = () => {
         <Grid
           item
           xs={12}
-          md={8}
-          sm={10}
+          md={7.5}
+          sm={9}
         >
           <Outlet />
         </Grid>
@@ -39,7 +35,7 @@ export const Layout = () => {
         >
           <Rightbar />
         </Grid>
-        <Grid item xs={2} sx={{ navbar, display: { sm: "block", md: "none" } }}>
+        <Grid item xs={2} sx={{ navbar, display: { sm: "none", md: "none" } }}>
           <BottomNavbar />
         </Grid>
       </Grid>

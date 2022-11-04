@@ -12,7 +12,8 @@ const LayoutStyle = {
     pb: 4,
     width: { sm: "200px" },
     maxWidth: { sm: "none", xs : "none" },
-    flexDirection : {sm : "column", xs : "row"}
+    flexDirection : {sm : "column", xs : "row"},
+    display : {xs : "none ", md : "unset", sm : "block"}
   },
   sidebar: {
     ...sticky,
