@@ -9,11 +9,11 @@ import { useState } from "react";
 export function FooterIcons() {
   const deleteHover = <Typography variant="body2">Delete Article</Typography>;
   const savePostHover = <Typography variant="body2">Save Article</Typography>;
+  const [hover, setHover] = useState(false);
+  const [hoverPost, setHoverPost] = useState(false);
 
   const [color, setColor] = useState("grey");
 
-  const [hover, setHover] = useState(false);
-  const [hoverPost, setHoverPost] = useState(false);
 
   function handleBookMarkClick() {
     if (color === "grey") {
@@ -21,9 +21,7 @@ export function FooterIcons() {
     } else setColor("grey");
   }
 
-  function HandleArticleRemove() {
-    console.log("ciao");
-  }
+  function HandleArticleRemove() {}
   return (
     <>
       <Box sx={styles.FooterIcons.layout}>
@@ -33,18 +31,18 @@ export function FooterIcons() {
           onMouseEnter={() => setHoverPost(true)}
           onMouseLeave={() => setHoverPost(false)}
         />
-        <Box sx={styles.hoverStyle}>
+        {/* <Box sx={styles.hoverStyle}>
           <Fade in={hoverPost}>{savePostHover}</Fade>
-        </Box>
+        </Box> */}
         <RemoveCircleOutlineIcon
           sx={styles.FooterIcons.details}
           onMouseEnter={() => setHover(true)}
           onMouseLeave={() => setHover(false)}
           onClick={HandleArticleRemove}
         />
-        <Box sx={styles.hoverStyle}>
+        {/* <Box sx={styles.hoverStyle}>
           <Fade in={hover}>{deleteHover}</Fade>
-        </Box>
+        </Box> */}
       </Box>
     </>
   );
