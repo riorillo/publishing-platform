@@ -16,29 +16,29 @@ export const LeftSidebar = () => {
 
   return (
     <Container sx={container}>
-      <NavLink title="" to="/">
+      <NavLink title="" to="/home">
         <Logo />
       </NavLink>
 
       <Box sx={box}>
-        <NavLink title="Home" to="/">
-          {pathname === "/" ? (
+        <NavLink title="Home" to="/home">
+          {pathname === "/home" ? (
             <HomeIcon sx={icon} />
           ) : (
             <HomeOutlinedIcon sx={icon} />
           )}
         </NavLink>
 
-        <NavLink title="Saved" to="/me/saved">
-          {pathname === "/me/saved" ? (
+        <NavLink title="Saved" to="me/saved">
+          {pathname === "/home/me/saved" ? (
             <BookmarksIcon sx={icon} />
           ) : (
             <BookmarksOutlinedIcon sx={icon} />
           )}
         </NavLink>
 
-        <NavLink title="Stories" to="/me/stories">
-          {pathname === "/me/stories" ? (
+        <NavLink title="Stories" to="me/stories">
+          {pathname === "/home/me/stories" ? (
             <ArticleIcon sx={icon} />
           ) : (
             <ArticleOutlinedIcon sx={icon} />
