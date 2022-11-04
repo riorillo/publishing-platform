@@ -6,7 +6,7 @@ const LayoutStyle = {
   },
   box: {
     maxWidth: "700px",
-    ["@media (max-width: 900px)"]: { maxWidth: "95%" },
+    ["@media (max-width: 900px)"]: { maxWidth: "100%" },
     width: "100%",
     display: "flex",
     margin: "auto",

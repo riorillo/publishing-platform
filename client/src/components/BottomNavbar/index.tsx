@@ -6,9 +6,12 @@ import {
 import HomeIcon from "@mui/icons-material/Home";
 import SearchIcon from "@mui/icons-material/Search";
 import BookmarksOutlinedIcon from "@mui/icons-material/BookmarksOutlined";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
+import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
+import BookmarksIcon from "@mui/icons-material/Bookmarks";
 
 const BottomNavbar = () => {
+  const { pathname } = useLocation();
   return (
     <BottomNavigation
       sx={{
@@ -24,17 +27,31 @@ const BottomNavbar = () => {
         alignItems: "center",
       }}
     >
-      <Link to="/">
-        <BottomNavigationAction label="Home" icon={<HomeIcon />} />
+      <Link to="/home">
+        {pathname === "/home" ? (
+          <BottomNavigationAction
+            label="Home"
+            icon={<HomeIcon sx={{ fill: "black" }} />}
+          />
+        ) : (
+          <BottomNavigationAction label="Home" icon={<HomeOutlinedIcon />} />
+        )}
       </Link>
-      <Link to="/">
+      <Link to="#">
         <BottomNavigationAction label="Search" icon={<SearchIcon />} />
       </Link>
-      <Link to="/">
-        <BottomNavigationAction
-          label="Bookmark"
-          icon={<BookmarksOutlinedIcon />}
-        />
+      <Link to="me/saved">
+        {pathname === "/home/me/saved" ? (
+          <BottomNavigationAction
+            label="Saved"
+            icon={<BookmarksIcon sx={{ fill: "black" }} />}
+          />
+        ) : (
+          <BottomNavigationAction
+            label="Saved"
+            icon={<BookmarksOutlinedIcon />}
+          />
+        )}
       </Link>
       <Avatar
         sx={{ width: 28, height: 28 }}
