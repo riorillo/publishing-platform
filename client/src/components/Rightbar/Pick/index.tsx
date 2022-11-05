@@ -18,7 +18,7 @@ const Pick: React.FC<{
     <>
       {" "}
       <ListItem alignItems="flex-start">
-        <Link to="/">
+        <Link to="#">
           <ListItemAvatar>
             <Avatar
               alt={username}
@@ -30,11 +30,11 @@ const Pick: React.FC<{
             />
           </ListItemAvatar>
         </Link>
-        <Link to="/"></Link>
+        <Link to="#"></Link>
         <ListItemText
           primary={
             <Link
-              to="/"
+              to="#"
               style={{
                 textDecoration: "none",
                 color: "black",
@@ -47,7 +47,7 @@ const Pick: React.FC<{
           secondary={
             <React.Fragment>
               <Link
-                to="/"
+                to="#"
                 style={{
                   textDecoration: "none",
                   color: "inherit",

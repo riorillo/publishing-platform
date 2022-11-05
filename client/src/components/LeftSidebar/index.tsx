@@ -53,7 +53,6 @@ export const LeftSidebar = () => {
       </Box>
 
       <Avatar
-        sx={{ width: 28, height: 28 }}
         alt="Avatar"
         src="https://www.mtsolar.us/wp-content/uploads/2020/04/avatar-placeholder.png"
       />

@@ -6,57 +6,57 @@ import RecommendedTopics from "./RecommendedTopics";
 import Searchbar from "./Searchbar";
 import UserToFollow from "./UsersToFollow";
 import Footer from "./Footer";
+import ale from "../../assets/Ale.jpg";
+import frank from "../../assets/Frank.jpg";
+import ivan from "../../assets/Ivan.jpg";
+import lore from "../../assets/Lore.jpg";
+import marco from "../../assets/Marco.png";
+import rocco from "../../assets/Rocco.jpg";
 
 const StaffPicks = [
   {
-    username: "User 1",
-    avatar:
-      "https://www.mtsolar.us/wp-content/uploads/2020/04/avatar-placeholder.png",
-    title: "Please Consider the Racial Impact of Your Halloween Decor",
+    username: "Alessandro",
+    avatar: ale,
+    title: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
   },
   {
-    username: "User 2",
-    avatar:
-      "https://www.mtsolar.us/wp-content/uploads/2020/04/avatar-placeholder.png",
-    title: "Please Consider the Racial Impact of Your Halloween Decor",
+    username: "Francesco",
+    avatar: frank,
+    title: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
   },
   {
-    username: "User 3",
-    avatar:
-      "https://www.mtsolar.us/wp-content/uploads/2020/04/avatar-placeholder.png",
-    title: "Please Consider the Racial Impact of Your Halloween Decor",
+    username: "Ivan",
+    avatar: ivan,
+    title: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
   },
 ];
 
 const Topics = [
   "Self Improvement",
-  "Writing",
+  "Coding",
   "Machine Learning",
-  "Politics",
+  "Frameworks",
   "Cryptocurrency",
   "Productivity",
-  "Politics",
-  "Relationships",
+  "Blockchain",
+  "Development",
 ];
 
 const WhoToFollow = [
   {
-    username: "User 4",
-    avatar:
-      "https://www.mtsolar.us/wp-content/uploads/2020/04/avatar-placeholder.png",
-    title: "Please Consider the Racial Impact of Your Halloween Decor",
+    username: "Lorenzo",
+    avatar: lore,
+    title: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
   },
   {
-    username: "User 5",
-    avatar:
-      "https://www.mtsolar.us/wp-content/uploads/2020/04/avatar-placeholder.png",
-    title: "Please Consider the Racial Impact of Your Halloween Decor",
+    username: "Marco",
+    avatar: marco,
+    title: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
   },
   {
-    username: "User 6",
-    avatar:
-      "https://www.mtsolar.us/wp-content/uploads/2020/04/avatar-placeholder.png",
-    title: "Please Consider the Racial Impact of Your Halloween Decor",
+    username: "Rocco",
+    avatar: rocco,
+    title: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
   },
 ];
 
@@ -65,13 +65,13 @@ const Rightbar = () => {
     <Box>
       <Searchbar />
       <Box sx={{ display: "flex", alignItems: "center", mt: 4, ml: 3 }}>
-        <Link to="/">
+        <Link to="#">
           <FiberManualRecordIcon
             fontSize="small"
             sx={{ fill: "green", mr: 1 }}
           />
         </Link>
-        <Link to="/" style={{ textDecoration: "none", color: "black" }}>
+        <Link to="#" style={{ textDecoration: "none", color: "black" }}>
           <Typography
             paragraph
             sx={{
