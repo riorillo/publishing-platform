@@ -68,7 +68,7 @@ export default function Login() {
             type="submit"
             loading={loading}
             variant="outlined"
-            sx={{ border: "2px solid #7AC86A", fontWeight: "bold" }}
+            sx={{ fontWeight: "bold" }}
           >
             Login
           </LoadingButton>
