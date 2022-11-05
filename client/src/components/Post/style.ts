@@ -31,7 +31,7 @@ export const styles: Style = {
     bgcolor: "background.paper",
     whiteSpace: "nowrap",
   },
-  cardContainer: { maxWidth: { sm: 700, xs: "95%" }, margin: "auto" },
+  cardContainer: { maxWidth: { sm: 700, xs: "95%" }, margin: "auto", marginBottom : "20px" },
   userName_imageContainer: {
     display: "flex",
     gap: 1,

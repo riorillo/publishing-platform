@@ -28,6 +28,7 @@ export type ModalProps = {
 
 export default function Register() {
   const [error, setError] = useState(false);
+  const [success, setSuccess] = useState(false);
   const user = useContext<UserContextType>(UserContext);
   const [topics, setTopics] = useState([]);
   const [topicsToAdd, setTopicsToAdd] = useState<string[]>([]);
@@ -53,6 +54,7 @@ export default function Register() {
     setTopicsToAdd(topicsArray);
   }
 
+
   function handleRegistration(e: any) {
     e.preventDefault();
     if (topicsToAdd.length < 3) return;
@@ -75,7 +77,9 @@ export default function Register() {
           }
         );
         if (fetching.status === 200) {
+          setSuccess(true);
           window.sessionStorage.setItem("token", fetching.data.accessToken);
+          setTimeout(()=>{window.location.replace("http://localhost:3000/login")}, 5000)
         }
       } catch {
         setError(true);
@@ -110,20 +114,15 @@ export default function Register() {
                   type="password"
                   required
                 />
-                <Box sx={{height: "56px", display: "flex"}}>
-
-                <AddTopic {...modalParameters} elementList={topics} />
+                <Box sx={{ height: "56px", display: "flex" }}>
+                  <AddTopic {...modalParameters} elementList={topics} />
                 </Box>
               </Box>
             </Box>
             <Button
               type="submit"
               disabled={topicsToAdd.length < 3}
-              sx={{
-                border: "2px solid #7AC86A",
-                fontWeight: "bold",
-                width: "100px",
-              }}
+              variant="outlined"
             >
               Sign Up
             </Button>
@@ -160,6 +159,32 @@ export default function Register() {
               textAlign="center"
             >
               There's a problem with the server, please try again later.
+            </Typography>
+          </Box>
+        </Modal>
+        <Modal
+          open={success}
+          onClose={handleClose}
+          aria-labelledby="modal-modal-title"
+          aria-describedby="modal-modal-description"
+        >
+          <Box sx={modalStyle}>
+            <Typography
+              id="modal-modal-title"
+              variant="h6"
+              component="h2"
+              color="primary"
+              textAlign="center"
+            >
+              Congratulations, your account has been registered.
+            </Typography>
+            <Typography
+              id="modal-modal-description"
+              sx={{ mt: 2 }}
+              textAlign="center"
+            >
+              You will be automatically redirected to the login page in few
+              seconds.
             </Typography>
           </Box>
         </Modal>
