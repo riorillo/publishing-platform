@@ -14,12 +14,7 @@ export const Layout = () => {
         <Grid item xs={0} md={1} sm={1} sx={navbar}>
           <LeftSidebar />
         </Grid>
-        <Grid
-          item
-          xs={12}
-          md={7.5}
-          sm={9}
-        >
+        <Grid item xs={12} md={7.5} sm={9}>
           <Outlet />
         </Grid>
         <Grid
@@ -35,7 +30,7 @@ export const Layout = () => {
         >
           <Rightbar />
         </Grid>
-        <Grid item xs={2} sx={{ navbar, display: { sm: "none", md: "none" } }}>
+        <Grid item xs={2} sx={{ navbar, display: { sm: "none", md: "none" }}}>
           <BottomNavbar />
         </Grid>
       </Grid>

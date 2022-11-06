@@ -1,7 +1,6 @@
 import { TabContext, TabList, TabPanel } from "@mui/lab";
 import { Tab } from "@mui/material";
 import { Box } from "@mui/system";
-import React from "react";
 import AddTopic from "../NewsFeed/AddTopic";
 import Post from "../Post";
 import { Article } from "./mockArticle";
@@ -14,7 +13,7 @@ type Props = {
   postList: Article[],
   visualizedList?: Article[],
   add?: boolean,
-  addTopicList?: string[]
+  addTopicList?: string[],
 };
 
 export default function PostFilter({
