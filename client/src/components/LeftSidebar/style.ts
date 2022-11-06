@@ -16,7 +16,7 @@ const LeftSidebarStyle = {
     justifyContent: "center",
   },
   icon: {
-    fill: 'black'
+    fill: 'black',
   }
 };
 
