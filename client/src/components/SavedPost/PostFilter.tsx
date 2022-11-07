@@ -50,7 +50,7 @@ export default function PostFilter({
         </TabList>
         <TabPanel sx={LayoutStyle.tabPanel} value="All">
           <ul style={LayoutStyle.li}>
-            {postList?.map((ele) => (
+            {visualizedList?.map((ele) => (
               <li key={ele.id}>
                 <Post article={ele} />
               </li>
@@ -60,7 +60,7 @@ export default function PostFilter({
         {topicList.map((ele) => (
           <TabPanel sx={LayoutStyle.tabPanel} value={ele} key={ele}>
             <ul style={LayoutStyle.li}>
-              {postList?.map((ele,i) => (
+              {visualizedList?.map((ele,i) => (
                 <li key={i}>
                   <Post article={ele} />
                 </li>
