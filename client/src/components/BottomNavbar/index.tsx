@@ -4,11 +4,11 @@ import {
   BottomNavigationAction,
 } from "@mui/material";
 import HomeIcon from "@mui/icons-material/Home";
-import SearchIcon from "@mui/icons-material/Search";
 import BookmarksOutlinedIcon from "@mui/icons-material/BookmarksOutlined";
 import { Link, useLocation } from "react-router-dom";
 import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
 import BookmarksIcon from "@mui/icons-material/Bookmarks";
+import CreateOutlined from "@mui/icons-material/CreateOutlined";
 
 const BottomNavbar = () => {
   const { pathname } = useLocation();
@@ -34,11 +34,17 @@ const BottomNavbar = () => {
             icon={<HomeIcon sx={{ fill: "black" }} />}
           />
         ) : (
-          <BottomNavigationAction label="Home" icon={<HomeOutlinedIcon />} />
+          <BottomNavigationAction
+            label="Home"
+            icon={<HomeOutlinedIcon sx={{ fill: "black" }} />}
+          />
         )}
       </Link>
-      <Link to="#">
-        <BottomNavigationAction label="Search" icon={<SearchIcon />} />
+      <Link title="New story" to="/new-story">
+        <BottomNavigationAction
+          label="Write"
+          icon={<CreateOutlined sx={{ fill: "black" }} />}
+        />
       </Link>
       <Link to="me/saved">
         {pathname === "/home/me/saved" ? (
@@ -49,7 +55,7 @@ const BottomNavbar = () => {
         ) : (
           <BottomNavigationAction
             label="Saved"
-            icon={<BookmarksOutlinedIcon />}
+            icon={<BookmarksOutlinedIcon sx={{ fill: "black" }} />}
           />
         )}
       </Link>
