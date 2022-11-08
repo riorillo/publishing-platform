@@ -2,14 +2,8 @@ import React from "react";
 import { Button } from "@mui/material";
 
 export function CloudinaryUploadWidget({ handleSetUrl }) {
-  const cloudName = "dhat5iy1e"; // replace with your own cloud name
-  const uploadPreset = "develhope"; // replace with your own upload preset
-  // Remove the comments from the code below to add
-  // additional functionality.
-  // Note that these are only a few examples, to see
-  // the full list of possible parameters that you
-  // can add see:
-  //   https://cloudinary.com/documentation/upload_widget_reference
+  const cloudName = "dhat5iy1e";
+  const uploadPreset = "develhope";
 
   var myWidget = window.cloudinary.createUploadWidget(
     {
