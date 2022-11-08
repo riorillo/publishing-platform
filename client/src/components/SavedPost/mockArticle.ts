@@ -1,6 +1,6 @@
 export type Article = {
   // title: string;
-  id: number;
+  id: string;
   username: string;
   publishedAt: string;
   topic: string;
@@ -14,7 +14,7 @@ export type Article = {
 
 export const exampleArray: Article[] = [
   {
-    id: 1,
+    id: "1",
     title: "Article placeholder",
     userImage: "https://www.mtsolar.us/wp-content/uploads/2020/04/avatar-placeholder.png",
     username: "Alex",
@@ -28,7 +28,7 @@ export const exampleArray: Article[] = [
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorem quasi aperiam quidem quibusdam, tenetur distinctio!}",
   },
   {
-    id: 2,
+    id: "2",
     title: "Article placeholder",
     userImage: "https://www.mtsolar.us/wp-content/uploads/2020/04/avatar-placeholder.png",
     username: "Alex",
@@ -42,7 +42,7 @@ export const exampleArray: Article[] = [
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorem quasi aperiam quidem quibusdam, tenetur distinctio!}",
   },
   {
-    id: 3,
+    id: "3",
     title: "Article placeholder",
     userImage: "https://www.mtsolar.us/wp-content/uploads/2020/04/avatar-placeholder.png",
     username: "Alex",
@@ -56,7 +56,7 @@ export const exampleArray: Article[] = [
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorem quasi aperiam quidem quibusdam, tenetur distinctio!}",
   },
   {
-    id: 4,
+    id: "4",
     title: "Article placeholder",
     userImage: "https://www.mtsolar.us/wp-content/uploads/2020/04/avatar-placeholder.png",
     username: "Alex",
@@ -70,7 +70,7 @@ export const exampleArray: Article[] = [
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorem quasi aperiam quidem quibusdam, tenetur distinctio!}",
   },
   {
-    id: 5,
+    id: "5",
     title: "Article placeholder",
     userImage: "https://www.mtsolar.us/wp-content/uploads/2020/04/avatar-placeholder.png",
     username: "Alex",
@@ -84,7 +84,7 @@ export const exampleArray: Article[] = [
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorem quasi aperiam quidem quibusdam, tenetur distinctio!}",
   },
   {
-    id: 6,
+    id: "6",
     title: "Article placeholder",
     userImage: "https://www.mtsolar.us/wp-content/uploads/2020/04/avatar-placeholder.png",
     username: "Alex",
@@ -98,7 +98,7 @@ export const exampleArray: Article[] = [
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorem quasi aperiam quidem quibusdam, tenetur distinctio!}",
   },
   {
-    id: 7,
+    id: "7",
     title: "Article placeholder",
     userImage: "https://www.mtsolar.us/wp-content/uploads/2020/04/avatar-placeholder.png",
     username: "Alex",
@@ -112,7 +112,7 @@ export const exampleArray: Article[] = [
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorem quasi aperiam quidem quibusdam, tenetur distinctio!}",
   },
   {
-    id: 8,
+    id: "8",
     title: "Article placeholder",
     userImage: "https://www.mtsolar.us/wp-content/uploads/2020/04/avatar-placeholder.png",
     username: "Alex",

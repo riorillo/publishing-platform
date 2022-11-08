@@ -49,7 +49,6 @@ export default function NewsFeed() {
         visualized={visualized}
         handleChange={onChange}
         topicList={user.topics ? user.topics : []}
-        postList={exampleArray}
         add={true}
         addTopicList={topicToAdd}
       />

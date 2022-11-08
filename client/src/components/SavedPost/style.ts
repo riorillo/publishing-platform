@@ -31,6 +31,7 @@ const LayoutStyle = {
     textAlign: "left"
   },
   tabPanel:{
+    width: "100%",
     paddingLeft: "0",
     paddingRight: "0"
   },
