@@ -11,7 +11,6 @@ export default function SavedPost() {
   const [visualizedList, setVisualizedList] = useState<Article[] | undefined>(
     exampleArray
   );
-
   // Visualize the All filter or the selected one
   useEffect(() => {
     if (visualized === "All") {

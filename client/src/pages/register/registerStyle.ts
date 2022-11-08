@@ -4,7 +4,7 @@ export const formStyle: any = {
   alignItems: "center",
   justifyContent: "center",
   flexDirection: "column",
-  gap: { sm: "50px", xs: "15px" },
+  gap: { sm: "30px", xs: "0px" },
 };
 export const containerFormStyle: any = {
   height: "100%",
@@ -13,7 +13,7 @@ export const containerFormStyle: any = {
   justifyContent: "center",
 };
 export const paperStyle = {
-  height: { sm: 700, xs: 700 },
+  height: { sm: 700, xs: "720px" },
   padding: { sm: "20px 30px", xs: "0" },
   width: { sm: 700, xs: 300 },
   display: "flex",
@@ -23,18 +23,19 @@ export const paperStyle = {
 export const boxesContainer = {
   display: "flex",
   justifyContent: "center",
-  gap: "20px",
+  gap: { sm: "15px", xs: "7px" },
   flexDirection: { sm: "row", xs: "column" },
+  marginBottom: { sm: "0px", xs: "10px" },
 };
 export const firstBoxStyle = {
   display: "flex",
   flexDirection: "column",
-  gap: "20px",
+  gap: { sm: "15px", xs: "7px" },
 };
 export const secondBoxStyle = {
   display: "flex",
   flexDirection: "column",
-  gap: "20px",
+  gap: { sm: "15px", xs: "7px" },
 };
 
 export const modalStyle = {

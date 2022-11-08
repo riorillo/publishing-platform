@@ -16,6 +16,7 @@ import {
 import { Link } from "react-router-dom";
 import AddTopic from "../../components/NewsFeed/AddTopic";
 import { UserContext, UserContextType } from "../../utils/context";
+import { CloudinaryUploadWidget } from "./CloudinaryUploadWidget";
 
 export type ModalProps = {
   textDisplayed?: string;
@@ -32,6 +33,11 @@ export default function Register() {
   const user = useContext<UserContextType>(UserContext);
   const [topics, setTopics] = useState([]);
   const [topicsToAdd, setTopicsToAdd] = useState<string[]>([]);
+  const [url, setUrl] = useState<string | null>(null)
+
+  function handleSetUrl(finalUrl : string){
+    setUrl(finalUrl)
+  }
 
   // modal customization
   const modalParameters: ModalProps = {
@@ -54,7 +60,6 @@ export default function Register() {
     setTopicsToAdd(topicsArray);
   }
 
-
   function handleRegistration(e: any) {
     e.preventDefault();
     if (topicsToAdd.length < 3) return;
@@ -70,6 +75,7 @@ export default function Register() {
           {
             username,
             email,
+            avatar : url,
             password,
             age: parseInt(age),
             name,
@@ -79,7 +85,9 @@ export default function Register() {
         if (fetching.status === 200) {
           setSuccess(true);
           window.sessionStorage.setItem("token", fetching.data.accessToken);
-          setTimeout(()=>{window.location.replace("http://localhost:3000/login")}, 5000)
+          setTimeout(() => {
+            window.location.replace("http://localhost:3000/login");
+          }, 5000);
         }
       } catch {
         setError(true);
@@ -94,7 +102,9 @@ export default function Register() {
         <Paper elevation={20} sx={paperStyle}>
           <Box component="form" onSubmit={handleRegistration} sx={formStyle}>
             <Logo />
-            <Typography variant="h4">Sign Up </Typography>
+            <Typography variant="h4" sx={{ fontSize: { xs: "1.8rem" }, mb : {xs : "1rem"} }}>
+              Sign Up{" "}
+            </Typography>
             <Box sx={boxesContainer}>
               <Box sx={firstBoxStyle}>
                 <TextField
@@ -119,6 +129,9 @@ export default function Register() {
                 </Box>
               </Box>
             </Box>
+            <Box mb={"10px"}>
+              <CloudinaryUploadWidget handleSetUrl={handleSetUrl} />
+            </Box>
             <Button
               type="submit"
               disabled={topicsToAdd.length < 3}
@@ -128,6 +141,7 @@ export default function Register() {
             </Button>
             <Typography
               sx={{
+                mt : "10px",
                 fontSize: { sm: "1rem", xs: "12px" },
                 textAlign: { sm: "start", xs: "center" },
               }}
