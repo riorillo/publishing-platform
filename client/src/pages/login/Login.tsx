@@ -62,7 +62,7 @@ export default function Login() {
         >
           <Logo />
           <Typography variant="h4">Login </Typography>
-          <TextField label="Name" name="username" autoFocus />
+          <TextField label="Username" name="username" autoFocus />
           <TextField name="password" label="Password" type="password" />
           <LoadingButton
             type="submit"

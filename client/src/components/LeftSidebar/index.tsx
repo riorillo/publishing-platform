@@ -1,3 +1,4 @@
+import { useContext } from "react";
 import { Avatar, Box, Container } from "@mui/material";
 import { NavLink, useLocation } from "react-router-dom";
 import LeftSidebarStyle from "./style";
@@ -9,10 +10,12 @@ import BookmarksOutlinedIcon from "@mui/icons-material/BookmarksOutlined";
 import ArticleOutlinedIcon from "@mui/icons-material/ArticleOutlined";
 import ArticleIcon from "@mui/icons-material/Article";
 import CreateOutlinedIcon from "@mui/icons-material/CreateOutlined";
+import { UserContext, UserContextType } from "../../utils/context";
 
 export const LeftSidebar = () => {
   const { pathname } = useLocation();
   const { icon, container, box } = LeftSidebarStyle;
+  const user = useContext<UserContextType>(UserContext);
 
   return (
     <Container sx={container}>
@@ -52,10 +55,7 @@ export const LeftSidebar = () => {
         </NavLink>
       </Box>
 
-      <Avatar
-        alt="Avatar"
-        src="https://www.mtsolar.us/wp-content/uploads/2020/04/avatar-placeholder.png"
-      />
+      <Avatar alt="Avatar" src={user.avatar} />
     </Container>
   );
 };

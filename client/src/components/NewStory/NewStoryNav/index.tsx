@@ -1,6 +1,7 @@
 import { Avatar, Box, Button, Container, Typography } from "@mui/material";
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { NavLink } from "react-router-dom";
+import { UserContext, UserContextType } from "../../../utils/context";
 import NewStoryModal from "../NewStoryModal";
 import { NewStoryNavStyle } from "./style";
 
@@ -8,6 +9,8 @@ const NewStoryNav: React.FC<{ username: string; onClick: () => void }> = ({
   username,
   onClick,
 }) => {
+  const user = useContext<UserContextType>(UserContext);
+
   return (
     <>
       <Container sx={NewStoryNavStyle.container} maxWidth="lg">
@@ -18,12 +21,12 @@ const NewStoryNav: React.FC<{ username: string; onClick: () => void }> = ({
             </Button>
           </NavLink>
           <Typography>
-            Draft in <strong>{username}</strong>
+            Draft in <strong>{user.username}</strong>
           </Typography>
         </Box>
 
         <Box sx={NewStoryNavStyle.box}>
-          <Avatar>{username.split("")[0]}</Avatar>
+          <Avatar alt="Avatar" src={user.avatar} />
           <Button color="primary" variant="contained" onClick={onClick}>
             Publish
           </Button>
