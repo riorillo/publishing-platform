@@ -1,6 +1,5 @@
 import { Box } from "@mui/material";
 import axios from "axios";
-import { setDefaultResultOrder } from "dns";
 import { useContext, useEffect, useState } from "react";
 import { UserContext } from "../../utils/context";
 import NewStoryModal from "./NewStoryModal";

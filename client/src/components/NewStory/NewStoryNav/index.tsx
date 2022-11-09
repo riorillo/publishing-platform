@@ -1,8 +1,7 @@
 import { Avatar, Box, Button, Container, Typography } from "@mui/material";
-import { useState, useContext } from "react";
+import { useContext } from "react";
 import { NavLink } from "react-router-dom";
 import { UserContext, UserContextType } from "../../../utils/context";
-import NewStoryModal from "../NewStoryModal";
 import { NewStoryNavStyle } from "./style";
 
 const NewStoryNav: React.FC<{onClick: () => void }> = ({

@@ -1,13 +1,12 @@
-import React, { SyntheticEvent, useEffect, useContext, useState } from "react";
+import { SyntheticEvent, useEffect, useContext, useState } from "react";
 import PostFilter from "../SavedPost/PostFilter";
-import { Article, exampleArray } from "../SavedPost/mockArticle";
-import { Box, minHeight } from "@mui/system";
 import LayoutStyle from "../SavedPost/style";
 import { UserContext, UserContextType } from "../../utils/context";
 import { fetchDataFromServer } from "../../utils/service";
 import axios from "axios";
 import CircularProgress from "@mui/material/CircularProgress";
-import { Typography } from "@mui/material";
+import { Box, Typography } from "@mui/material";
+import { Article } from "../SavedPost/mockArticle";
 
 export default function NewsFeed() {
   const [visualized, setVisualized] = useState<string>("All");

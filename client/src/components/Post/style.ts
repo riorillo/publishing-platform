@@ -31,7 +31,11 @@ export const styles: Style = {
     bgcolor: "background.paper",
     whiteSpace: "nowrap",
   },
-  cardContainer: { maxWidth: { sm: 700, xs: "95%" }, margin: "auto", marginBottom : "20px" },
+  cardContainer: {
+    maxWidth: { sm: 700, xs: "95%" },
+    margin: "auto",
+    marginBottom: "20px",
+  },
   userName_imageContainer: {
     display: "flex",
     gap: 1,
@@ -66,7 +70,12 @@ export const styles: Style = {
     pl: "16px",
   },
   FooterIcons: {
-    layout: { display: "flex", gap: 2, p: 1.5, position: "relative" },
+    layout: {
+      display: "flex",
+      gap: { sm: 2, xs: "8px" },
+      p: { sm: 1.5, xs: "12px 6px" },
+      position: "relative",
+    },
     details: {
       mr: 1,
       cursor: "pointer",
