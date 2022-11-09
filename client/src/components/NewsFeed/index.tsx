@@ -10,26 +10,31 @@ import { Article } from "../SavedPost/mockArticle";
 
 export default function NewsFeed() {
   const [visualized, setVisualized] = useState<string>("All");
-  const [visualizedList, setVisualizedList] = useState<Article[] | undefined>([]);
+  const [visualizedList, setVisualizedList] = useState<Article[] | undefined>(
+    []
+  );
   const [topicToAdd, setTopicToAdd] = useState([]);
   const [allPost, setAllPost] = useState<any>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const user = useContext<UserContextType>(UserContext);
+  console.log(user);
 
   useEffect(() => {
     const retrieveList = async () => {
       try {
         const topics = user.topics as any;
-        console.log(topics);
 
         const posts: any = [];
         setLoading(true);
 
         await Promise.all(
           topics.map(async (item: any) => {
-            const res = await axios.get(`http://localhost:3001/api/post/find/${item}`, {
-              headers: { token: `Bearer ${user.accessToken}` },
-            });
+            const res = await axios.get(
+              `http://localhost:3001/api/post/find/${item}`,
+              {
+                headers: { token: `Bearer ${user.accessToken}` },
+              }
+            );
             const retrievedPosts = res.data.map((item: any) => ({
               ...item,
               imageUrl: item.image
@@ -39,10 +44,17 @@ export default function NewsFeed() {
               description: item.content,
               username: item.author.name,
               topic: [...item.topic],
-              userImage: "https://www.mtsolar.us/wp-content/uploads/2020/04/avatar-placeholder.png",
+              userImage:
+                "https://www.mtsolar.us/wp-content/uploads/2020/04/avatar-placeholder.png",
               readingTime: "5 min",
             }));
-            posts.push(...retrievedPosts);
+            const savedCheckRetrievedPosts = retrievedPosts.map((ele: any) =>
+              ele.Saved.some((innerEle: any) => innerEle.userId === user.id)
+                ? { ...ele, isSaved: true }
+                : {...ele, isSaved: false}
+            );
+            // posts.push(...retrievedPosts);
+            posts.push(...savedCheckRetrievedPosts);
           })
         );
         setAllPost(posts);
@@ -73,7 +85,9 @@ export default function NewsFeed() {
     if (user.topics) {
       const fetchingTopicsList = async () => {
         const topicsData = await fetchDataFromServer("topics");
-        const filteredTopics = topicsData?.data.filter((el: string) => !user.topics?.includes(el));
+        const filteredTopics = topicsData?.data.filter(
+          (el: string) => !user.topics?.includes(el)
+        );
         setTopicToAdd(filteredTopics);
       };
       fetchingTopicsList();
@@ -108,7 +122,7 @@ export default function NewsFeed() {
             gap: "1rem",
             fontSize: "64px",
             borderRadius: "5%",
-            height: "100vh"
+            height: "100vh",
           }}
         >
           <CircularProgress size={144} />

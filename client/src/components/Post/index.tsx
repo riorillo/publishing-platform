@@ -26,14 +26,14 @@ export default function Post({
 }: Props) {
   const user = useContext<UserContextType>(UserContext);
   const [saved, setSaved] = useState(false);
-
   useEffect(() => {
     if (checkIfSaved) {
       const isSaved = checkIfSaved(article.id);
       setSaved(isSaved);
     }
-  }, []);
+  }, [article]);
 
+  //Logic to save or unsave a post
   async function handleSavePost() {
     const savedPost = await axios.post(
       "http://localhost:3001/api/saved",
@@ -68,7 +68,7 @@ export default function Post({
         <Box sx={styles.FooterContainer}>
           <CardFooter tag={article.topic} readingTime={article.readingTime} />
           <FooterIcons
-            checkSavedIcon={saved}
+            checkSavedIcon={("isSaved" in article) ? article.isSaved : true}
             handleSavePost={debouncedOnChange}
           />
         </Box>

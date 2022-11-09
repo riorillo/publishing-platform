@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   Avatar,
   ListItem,
@@ -15,6 +15,11 @@ const UsersToFollow: React.FC<{
   title: string;
   isLast?: boolean;
 }> = ({ username, avatar, title, isLast }) => {
+  const [follow, setFollow] = useState(false);
+
+  function handleFollow() {
+    setFollow((prev) => !prev);
+  }
   return (
     <>
       {" "}
@@ -25,7 +30,7 @@ const UsersToFollow: React.FC<{
           </ListItemAvatar>
         </Link>
         <Link to="#"></Link>
-        <ListItemText
+        <ListItemText sx={{paddingRight:".5rem"}}
           primary={
             <Link
               to="#"
@@ -52,7 +57,25 @@ const UsersToFollow: React.FC<{
             </React.Fragment>
           }
         />
-        <StyledOutlinedButton>Follow</StyledOutlinedButton>
+        <StyledOutlinedButton
+          sx={
+            follow
+              ? {
+                  "&:hover": {
+                    backgroundColor: "green",
+                    color: "white",
+                    borderColor: "white",
+                  },
+                  backgroundColor: "green",
+                  color: "white",
+                  borderColor: "white",
+                }
+              : {}
+          }
+          onClick={() => handleFollow()}
+        >
+          {follow ? "Followed" : "Follow"}
+        </StyledOutlinedButton>
       </ListItem>
       {!isLast && <Divider variant="inset" component="li" />}
       {isLast && <Divider />}

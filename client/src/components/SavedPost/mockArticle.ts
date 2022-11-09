@@ -10,6 +10,8 @@ export type Article = {
   userImage: string;
   readingTime: string;
   title: string;
+  Saved: {userId: string},
+  isSaved?: boolean
 };
 
 // export const exampleArray: Article[] = [
