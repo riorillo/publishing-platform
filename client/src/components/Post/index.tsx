@@ -12,6 +12,8 @@ import { Article } from "../SavedPost/mockArticle";
 import { UserContext, UserContextType } from "../../utils/context";
 import axios from "axios";
 import debounce from "lodash.debounce";
+import { useNavigate } from "react-router-dom";
+
 
 type Props = {
   article: Article;
@@ -26,6 +28,8 @@ export default function Post({
 }: Props) {
   const user = useContext<UserContextType>(UserContext);
   const [saved, setSaved] = useState(false);
+  const navigate = useNavigate();
+
 
   useEffect(() => {
     if (checkIfSaved) {
@@ -53,9 +57,9 @@ export default function Post({
 
   const debouncedOnChange = debounce(handleSavePost, 400);
 
-  let ciccio = article.content.split(" ");
-  console.log(ciccio.length);
-  let readingTime = `${Math.floor(ciccio.length * 0.4)} min`;
+  let articleChars = article.content.split(" ");
+  console.log(articleChars.length);
+  let readingTime = `${Math.floor(articleChars.length * 0.004)} min`;
 
   return (
     <>
@@ -69,7 +73,7 @@ export default function Post({
           }
           publishedAt={article.createdAt.substring(0, 10)}
         />
-        <CardActionArea sx={styles.flex}>
+        <CardActionArea sx={styles.flex} onClick={() => {navigate("/home/post/" + article.id)}}>
           <CardHeader
             title={article.title}
             description={

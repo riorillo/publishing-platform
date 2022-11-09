@@ -10,6 +10,7 @@ import Login from "./pages/login/Login";
 import { SetUserContext, UserContext } from "./utils/context";
 import Register from "./pages/register/Register";
 import YourStories from "./components/YourStories";
+import ArticlePage from "./components/ArticlePage";
 
 export function App() {
   const [userData, setUserData] = useState({});
@@ -39,6 +40,7 @@ export function App() {
               <Route path="me" element={<div>Pagina personale </div>} />
               <Route path="me/stories" element={<YourStories />} />
               <Route path="me/saved" element={<SavedPost />} />
+              <Route path="post/:id" element={<ArticlePage/>}/>
             </Route>
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
