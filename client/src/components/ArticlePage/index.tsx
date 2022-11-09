@@ -27,7 +27,7 @@ const ArticlePage = () => {
     <>
       {article && (
         <Container sx={ArticlePageStyle.container} maxWidth="md">
-          <Box sx={ArticlePageStyle.container}>
+          <Box sx={ArticlePageStyle.box}>
             <Avatar src={author.avatar} />
             <Box>
               <Typography variant="h6">{author.name}</Typography>
