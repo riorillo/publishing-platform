@@ -1,3 +1,37 @@
+# Dev.log( ) - Publishing platform 📝
+
+Team project - Develhope Coding School - Team 1
+
+## Team Members 👨🏻‍💻
+
+- [Alessandro Sgherri](https://github.com/AlexSgherri)
+- [Francesco M. Ferri](https://github.com/Francxmf)
+- [Ivan Frasca](https://github.com/Ivanfras98)
+- [Lorenzo Curreli](https://github.com/loricurreli)
+- [Marco Simile](https://github.com/msimile)
+- [Rocco Iorillo](https://github.com/riorillo)
+
+
+## Workflow and Management  🗂 
+
+- Definition of the general concept, focus of the project, core features to implement
+- Planning and study of the user interface, user experience, graphic design
+- Technologies, languages, frameworks and libraries, services : React.js, TypeScript, Material UI, Express.js, Prisma, Cockroach DB
+- Agile: Trello kanban board
+- Testing and bug-fixing
+- Deployment
+
+## Communication Channels 💬
+
+- Telegram
+- Discord
+- Google Meet
+
+## Weekly Meetings 📅
+
+- Monday : Project Manager meeting, stand-up, weekly sprint planning
+- Friday : Midweek review
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
