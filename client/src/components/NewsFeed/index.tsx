@@ -7,7 +7,6 @@ import axios from "axios";
 import CircularProgress from "@mui/material/CircularProgress";
 import { Box, Typography } from "@mui/material";
 import { Article } from "../SavedPost/mockArticle";
-import { connect } from "http2";
 
 export default function NewsFeed() {
   const [visualized, setVisualized] = useState<string>("All");
@@ -34,7 +33,6 @@ export default function NewsFeed() {
                 headers: { token: `Bearer ${user.accessToken}` },
               }
             );
-            console.log(res.data[0])
             const retrievedPosts = res.data.map((item: any) => ({
               ...item,
               imageUrl: item.image
@@ -49,12 +47,19 @@ export default function NewsFeed() {
                 : "https://www.mtsolar.us/wp-content/uploads/2020/04/avatar-placeholder.png",
               readingTime: "5 min",
             }));
-            posts.push(...retrievedPosts);
+            console.log(retrievedPosts)
+            const savedCheckRetrievedPosts = retrievedPosts.map((ele: any) =>
+              ele.Saved.some((innerEle: any) => innerEle.userId === user.id)
+                ? { ...ele, isSaved: true }
+                : {...ele, isSaved: false}
+            );
+            posts.push(...savedCheckRetrievedPosts);
           })
         );
         setAllPost(posts);
         setVisualizedList(posts);
       } catch (e) {
+        console.log(e)
         alert("Something went wrong, please refresh ⚠️");
       } finally {
         setLoading(false);

@@ -36,8 +36,9 @@ export default function Post({
       const isSaved = checkIfSaved(article.id);
       setSaved(isSaved);
     }
-  }, []);
+  }, [article]);
 
+  //Logic to save or unsave a post
   async function handleSavePost() {
     const savedPost = await axios.post(
       "http://localhost:3001/api/saved",
@@ -58,8 +59,7 @@ export default function Post({
   const debouncedOnChange = debounce(handleSavePost, 400);
 
   let articleChars = article.content.split(" ");
-  console.log(articleChars.length);
-  let readingTime = `${Math.floor(articleChars.length * 0.004)} min`;
+  let readingTime = `${Math.floor(articleChars.length * 0.04)} min`;
 
   return (
     <>
@@ -90,7 +90,7 @@ export default function Post({
             readingTime={readingTime === "0 min" ? "1 min" : readingTime}
           />
           <FooterIcons
-            checkSavedIcon={saved}
+            checkSavedIcon={("isSaved" in article) ? article.isSaved : true}
             handleSavePost={debouncedOnChange}
           />
         </Box>

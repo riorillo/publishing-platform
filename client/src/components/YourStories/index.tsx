@@ -39,7 +39,7 @@ const YourStories = () => {
     <>
       {loading && <Loading />}
       {!loading && (
-        <Box sx={{ width: "100%", pt: "32px", pl: "118.750px", pr: "118.750px" }}>
+        <Box sx={{ width: "100%", pt: "32px", pl: {sm:"118.750px", xs:"20px"}, pr: {sm:"118.750px", xs:"20px"} }}>
           <Typography variant="h3" fontWeight={"bold"} sx={{ mb: 2 }}>
             Your stories
           </Typography>
