@@ -7,10 +7,13 @@ import axios from "axios";
 import CircularProgress from "@mui/material/CircularProgress";
 import { Box, Typography } from "@mui/material";
 import { Article } from "../SavedPost/mockArticle";
+import { connect } from "http2";
 
 export default function NewsFeed() {
   const [visualized, setVisualized] = useState<string>("All");
-  const [visualizedList, setVisualizedList] = useState<Article[] | undefined>([]);
+  const [visualizedList, setVisualizedList] = useState<Article[] | undefined>(
+    []
+  );
   const [topicToAdd, setTopicToAdd] = useState([]);
   const [allPost, setAllPost] = useState<any>([]);
   const [loading, setLoading] = useState<boolean>(true);
@@ -20,26 +23,30 @@ export default function NewsFeed() {
     const retrieveList = async () => {
       try {
         const topics = user.topics as any;
-        console.log(topics);
-
         const posts: any = [];
         setLoading(true);
 
         await Promise.all(
           topics.map(async (item: any) => {
-            const res = await axios.get(`http://localhost:3001/api/post/find/${item}`, {
-              headers: { token: `Bearer ${user.accessToken}` },
-            });
+            const res = await axios.get(
+              `http://localhost:3001/api/post/find/${item}`,
+              {
+                headers: { token: `Bearer ${user.accessToken}` },
+              }
+            );
+            console.log(res.data[0])
             const retrievedPosts = res.data.map((item: any) => ({
               ...item,
               imageUrl: item.image
                 ? item.image
                 : "https://www.creaideagraphics.it/wp-content/uploads/2019/04/placeholder-image.jpg",
               publishedAt: item.createdAt.substring(0, 10),
-              description: item.content,
-              username: item.author.name,
+              description: item.content ? `${item.content.slice(0, 300)}...` : item.content,
+              username: item.author.username,
               topic: [...item.topic],
-              userImage: "https://www.mtsolar.us/wp-content/uploads/2020/04/avatar-placeholder.png",
+              userImage: item.author.avatar
+                ? item.author.avatar
+                : "https://www.mtsolar.us/wp-content/uploads/2020/04/avatar-placeholder.png",
               readingTime: "5 min",
             }));
             posts.push(...retrievedPosts);
@@ -73,7 +80,9 @@ export default function NewsFeed() {
     if (user.topics) {
       const fetchingTopicsList = async () => {
         const topicsData = await fetchDataFromServer("topics");
-        const filteredTopics = topicsData?.data.filter((el: string) => !user.topics?.includes(el));
+        const filteredTopics = topicsData?.data.filter(
+          (el: string) => !user.topics?.includes(el)
+        );
         setTopicToAdd(filteredTopics);
       };
       fetchingTopicsList();
@@ -108,7 +117,7 @@ export default function NewsFeed() {
             gap: "1rem",
             fontSize: "64px",
             borderRadius: "5%",
-            height: "100vh"
+            height: "100vh",
           }}
         >
           <CircularProgress size={144} />
