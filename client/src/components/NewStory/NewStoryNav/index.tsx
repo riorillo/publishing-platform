@@ -5,8 +5,7 @@ import { UserContext, UserContextType } from "../../../utils/context";
 import NewStoryModal from "../NewStoryModal";
 import { NewStoryNavStyle } from "./style";
 
-const NewStoryNav: React.FC<{ username: string; onClick: () => void }> = ({
-  username,
+const NewStoryNav: React.FC<{onClick: () => void }> = ({
   onClick,
 }) => {
   const user = useContext<UserContextType>(UserContext);
