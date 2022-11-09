@@ -7,13 +7,14 @@ import { Article } from "./mockArticle";
 import LayoutStyle from "./style";
 
 type Props = {
-  visualized: string,
-  handleChange: any,
-  topicList: string[],
-  postList: Article[],
-  visualizedList?: Article[],
-  add?: boolean,
-  addTopicList?: string[],
+  visualized: string;
+  handleChange: any;
+  topicList: string[];
+  removePostFromList?(articleId: any): void | undefined;
+  visualizedList?: Article[];
+  add?: boolean;
+  addTopicList?: string[];
+  checkIfSaved?(articleId:string): boolean,
 };
 
 export default function PostFilter({
@@ -21,54 +22,61 @@ export default function PostFilter({
   visualizedList,
   handleChange,
   topicList,
-  postList,
+  removePostFromList,
+  checkIfSaved,
   add,
-  addTopicList
+  addTopicList,
 }: Props) {
-
   return (
     <Box sx={LayoutStyle.box}>
-      <TabContext value={visualized}>
-        <TabList
-          value={visualized}
-          variant="scrollable"
-          scrollButtons="auto"
-          onChange={handleChange}
-          textColor="primary"
-          sx={LayoutStyle.tabList}
-        >
-         {add && <AddTopic elementList={addTopicList} titleText="Add some topic" />}
-          <Tab label="All" value="All" sx={LayoutStyle.tabLabel}/>
-          {topicList.map((ele) => (
-            <Tab
-              sx={LayoutStyle.tabLabel}
-              key={ele}
-              label={ele}
-              value={ele}
-            />
-          ))}
-        </TabList>
-        <TabPanel sx={LayoutStyle.tabPanel} value="All">
-          <ul style={LayoutStyle.li}>
-            {visualizedList?.map((ele) => (
-              <li key={ele.id}>
-                <Post article={ele} />
-              </li>
+      {topicList.length >=1 && (
+        <TabContext value={visualized}>
+          <TabList
+            value={visualized}
+            variant="scrollable"
+            scrollButtons="auto"
+            onChange={handleChange}
+            textColor="primary"
+            sx={LayoutStyle.tabList}
+          >
+            {add && (
+              <AddTopic elementList={addTopicList} titleText="Add some topic" />
+            )}
+            <Tab label="All" value="All" sx={LayoutStyle.tabLabel} />
+            {topicList.map((ele) => (
+              <Tab
+                sx={LayoutStyle.tabLabel}
+                key={ele}
+                label={ele}
+                value={ele}
+              />
             ))}
-          </ul>
-        </TabPanel>
-        {topicList.map((ele) => (
-          <TabPanel sx={LayoutStyle.tabPanel} value={ele} key={ele}>
+          </TabList>
+          <TabPanel sx={LayoutStyle.tabPanel} value="All">
             <ul style={LayoutStyle.li}>
-              {visualizedList?.map((ele,i) => (
-                <li key={i}>
-                  <Post article={ele} />
+              {visualizedList?.map((ele) => (
+                <li key={ele.id}>
+                  <Post checkIfSaved={checkIfSaved} removePostFromList={removePostFromList} article={ele} />
                 </li>
               ))}
             </ul>
           </TabPanel>
-        ))}
-      </TabContext>
+          {topicList.map((ele) => (
+            <TabPanel sx={LayoutStyle.tabPanel} value={ele} key={ele}>
+              <ul style={LayoutStyle.li}>
+                {visualizedList?.map((ele) => (
+                  <li key={ele.id}>
+                    <Post checkIfSaved={checkIfSaved}
+                      removePostFromList={removePostFromList}
+                      article={ele}
+                    />
+                  </li>
+                ))}
+              </ul>
+            </TabPanel>
+          ))}
+        </TabContext>
+      )}
     </Box>
   );
 }

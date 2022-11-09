@@ -2,12 +2,22 @@ import { styles } from "./style";
 import { Box } from "@mui/system";
 import BookmarkIcon from "@mui/icons-material/Bookmark";
 import RemoveCircleOutlineIcon from "@mui/icons-material/RemoveCircleOutline";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
-export function FooterIcons() {
+type Props = {
+  handleSavePost?(): void;
+  checkSavedIcon?: boolean;
+};
+
+export function FooterIcons({ handleSavePost, checkSavedIcon }: Props) {
   const [color, setColor] = useState("grey");
 
+  useEffect(() => {
+    checkSavedIcon ? setColor("black") : setColor("grey");
+  }, [checkSavedIcon]);
+
   function handleBookMarkClick() {
+    if (handleSavePost) handleSavePost();
     if (color === "grey") {
       setColor("black");
     } else setColor("grey");

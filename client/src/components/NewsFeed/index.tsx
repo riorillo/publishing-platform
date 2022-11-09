@@ -76,13 +76,12 @@ export default function NewsFeed() {
 
   return (
     <Box sx={LayoutStyle.box}>
-      {exampleArray.length > 0 && (
+      {allPost && allPost.length > 0 && (
         <PostFilter
           visualizedList={visualizedList}
           visualized={visualized}
           handleChange={onChange}
           topicList={user.topics ? user.topics : []}
-          postList={exampleArray}
           add={true}
           addTopicList={topicToAdd}
         />

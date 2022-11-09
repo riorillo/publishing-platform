@@ -43,7 +43,9 @@ const NewStory = () => {
       content: bodyText,
       topic: [selectedTopic],
       image:
-        body.search("src") !== -1 ? body.slice(body.search("src"), body.length).split('"')[1] : ""
+        body.search("src") !== -1
+          ? body.slice(body.search("src"), body.length).split('"')[1]
+          : "",
     }));
   }, [title, body, selectedTopic]);
 
@@ -74,17 +76,23 @@ const NewStory = () => {
         }}
         //DA FIXARE - LA RICHIESTA NON VA A BUON FINE;
         onClick={async () => {
-          
           try {
             setLoading(true);
             setSuccess(false);
             setError(false);
-            const res = await axios.post("http://localhost:3001/api/post/create", post, {
-              headers: {
-                token: `Bearer ${window.sessionStorage.getItem("token")}`,
-              },
-            });
+            const res = await axios.post(
+              "http://localhost:3001/api/post/create",
+              post,
+              {
+                headers: {
+                  token: `Bearer ${window.sessionStorage.getItem("token")}`,
+                },
+              }
+            );
             setSuccess(true);
+            setTimeout(() => {
+              window.location.replace("http://localhost:3000/home/me/stories");
+            }, 1000);
           } catch (e) {
             setError(true);
           } finally {
