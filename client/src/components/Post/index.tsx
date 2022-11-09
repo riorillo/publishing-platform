@@ -53,20 +53,38 @@ export default function Post({
 
   const debouncedOnChange = debounce(handleSavePost, 400);
 
+  let ciccio = article.content.split(" ");
+  console.log(ciccio.length);
+  let readingTime = `${Math.floor(ciccio.length * 0.4)} min`;
+
   return (
     <>
       <Card sx={styles.cardContainer}>
         <Header
-          username={article.username}
-          userImage={article.userImage}
-          publishedAt={article.publishedAt}
+          username={article.author.username}
+          userImage={
+            article.author.avatar
+              ? article.author.avatar
+              : "https://www.creaideagraphics.it/wp-content/uploads/2019/04/placeholder-image.jpg"
+          }
+          publishedAt={article.createdAt.substring(0, 10)}
         />
         <CardActionArea sx={styles.flex}>
-          <CardHeader title={article.title} description={article.description} />
+          <CardHeader
+            title={article.title}
+            description={
+              article.content.length > 300
+                ? `${article.content.slice(0, 300)}...`
+                : article.content
+            }
+          />
           <CardImage imageUrl={article.imageUrl} />
         </CardActionArea>
         <Box sx={styles.FooterContainer}>
-          <CardFooter tag={article.topic} readingTime={article.readingTime} />
+          <CardFooter
+            tag={article.topic}
+            readingTime={readingTime === "0 min" ? "1 min" : readingTime}
+          />
           <FooterIcons
             checkSavedIcon={saved}
             handleSavePost={debouncedOnChange}
