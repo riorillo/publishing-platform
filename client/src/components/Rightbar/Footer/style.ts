@@ -6,4 +6,5 @@ export const StyledFooter = styled(Box)({
   gap: "12px",
   marginTop: "8px",
   width: "100%",
+  marginBottom: "40px",
 });

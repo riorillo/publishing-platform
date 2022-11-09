@@ -5,21 +5,55 @@ import { Box } from "@mui/system";
 import LayoutStyle from "../SavedPost/style";
 import { UserContext, UserContextType } from "../../utils/context";
 import { fetchDataFromServer } from "../../utils/service";
+import axios from "axios";
 
 export default function NewsFeed() {
   const [visualized, setVisualized] = useState<string>("All");
-  const [visualizedList, setVisualizedList] = useState<Article[] | undefined>(
-    exampleArray
-  );
+  const [visualizedList, setVisualizedList] = useState<Article[] | undefined>([]);
   const [topicToAdd, setTopicToAdd] = useState([]);
+  const [allPost, setAllPost] = useState<any>([]);
   const user = useContext<UserContextType>(UserContext);
 
   useEffect(() => {
+    const retrieveList = async () => {
+      const topics = user.topics as any;
+      console.log(topics);
+
+      const posts: any = [];
+
+      await Promise.all(
+        topics.map(async (item: any) => {
+          const res = await axios.get(`http://localhost:3001/api/post/find/${item}`, {
+            headers: { token: `Bearer ${user.accessToken}` },
+          });
+          const retrievedPosts = res.data.map((item: any) => ({
+            ...item,
+            imageUrl:
+              "https://www.creaideagraphics.it/wp-content/uploads/2019/04/placeholder-image.jpg",
+            publishedAt: item.createdAt.substring(0, 10),
+            description: item.content,
+            username: item.author.name,
+            topic: [...item.topic],
+            userImage: "https://www.mtsolar.us/wp-content/uploads/2020/04/avatar-placeholder.png",
+            readingTime: "5 min",
+          }));
+          posts.push(...retrievedPosts);
+        })
+      );
+      setAllPost(posts);
+      setVisualizedList(posts);
+    };
+    if (user.topics) {
+      retrieveList();
+    }
+  }, [user.topics]);
+
+  useEffect(() => {
     if (visualized === "All") {
-      setVisualizedList(exampleArray);
+      setVisualizedList(allPost);
     } else {
-      const nextVisualizedList = exampleArray.filter(
-        (ele) => ele.topic === visualized
+      const nextVisualizedList = allPost.filter((ele: any) =>
+        ele.topic.some((item: string) => item === visualized)
       );
       setVisualizedList(nextVisualizedList);
     }
@@ -29,9 +63,7 @@ export default function NewsFeed() {
     if (user.topics) {
       const fetchingTopicsList = async () => {
         const topicsData = await fetchDataFromServer("topics");
-        const filteredTopics = topicsData?.data.filter(
-          (el: string) => !user.topics?.includes(el)
-        );
+        const filteredTopics = topicsData?.data.filter((el: string) => !user.topics?.includes(el));
         setTopicToAdd(filteredTopics);
       };
       fetchingTopicsList();
@@ -44,15 +76,17 @@ export default function NewsFeed() {
 
   return (
     <Box sx={LayoutStyle.box}>
-      <PostFilter
-        visualizedList={visualizedList}
-        visualized={visualized}
-        handleChange={onChange}
-        topicList={user.topics ? user.topics : []}
-        postList={exampleArray}
-        add={true}
-        addTopicList={topicToAdd}
-      />
+      {exampleArray.length > 0 && (
+        <PostFilter
+          visualizedList={visualizedList}
+          visualized={visualized}
+          handleChange={onChange}
+          topicList={user.topics ? user.topics : []}
+          postList={exampleArray}
+          add={true}
+          addTopicList={topicToAdd}
+        />
+      )}
     </Box>
   );
 }
