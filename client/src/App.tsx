@@ -9,7 +9,7 @@ import NewsFeed from "./components/NewsFeed";
 import Login from "./pages/login/Login";
 import { SetUserContext, UserContext } from "./utils/context";
 import Register from "./pages/register/Register";
-import YourStories from "./components/YourStories";
+import YourStories from "./components/SavedPost/YourStories";
 
 export function App() {
   const [userData, setUserData] = useState({});

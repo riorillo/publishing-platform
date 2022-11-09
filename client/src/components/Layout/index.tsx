@@ -26,6 +26,7 @@ export const Layout = () => {
           sx={{
             sidebar,
             display: { xs: "none", sm: "none", md: "block" },
+            position: "relative",
           }}
         >
           <Rightbar />

@@ -62,7 +62,7 @@ const WhoToFollow = [
 
 const Rightbar = () => {
   return (
-    <Box>
+    <Box sx={{position: "sticky", top: 0, height:"100vh", overflow: "scroll"}}>
       <Searchbar />
       <Box sx={{ display: "flex", alignItems: "center", mt: 4, ml: 3 }}>
         <Link to="#">

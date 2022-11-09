@@ -23,7 +23,7 @@ export const exampleArray: Article[] = [
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. A architecto commodi ut nihil non. Magni aspernatur repellat, dicta quibusdam voluptatibus numquam velit officia quam sed et corrupti doloremque quas quos.",
     imageUrl: "https://www.creaideagraphics.it/wp-content/uploads/2019/04/placeholder-image.jpg",
     readingTime: "5 min",
-    topic: "Placeholder",
+    topic: "Data Science",
     article:
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorem quasi aperiam quidem quibusdam, tenetur distinctio!}",
   },
@@ -37,7 +37,7 @@ export const exampleArray: Article[] = [
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. A architecto commodi ut nihil non. Magni aspernatur repellat, dicta quibusdam voluptatibus numquam velit officia quam sed et corrupti doloremque quas quos.",
     imageUrl: "https://www.creaideagraphics.it/wp-content/uploads/2019/04/placeholder-image.jpg",
     readingTime: "5 min",
-    topic: "Placeholder",
+    topic: "Data Science",
     article:
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorem quasi aperiam quidem quibusdam, tenetur distinctio!}",
   },
@@ -51,7 +51,7 @@ export const exampleArray: Article[] = [
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. A architecto commodi ut nihil non. Magni aspernatur repellat, dicta quibusdam voluptatibus numquam velit officia quam sed et corrupti doloremque quas quos.",
     imageUrl: "https://www.creaideagraphics.it/wp-content/uploads/2019/04/placeholder-image.jpg",
     readingTime: "5 min",
-    topic: "Placeholder",
+    topic: "Technology",
     article:
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorem quasi aperiam quidem quibusdam, tenetur distinctio!}",
   },
@@ -65,7 +65,7 @@ export const exampleArray: Article[] = [
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. A architecto commodi ut nihil non. Magni aspernatur repellat, dicta quibusdam voluptatibus numquam velit officia quam sed et corrupti doloremque quas quos.",
     imageUrl: "https://www.creaideagraphics.it/wp-content/uploads/2019/04/placeholder-image.jpg",
     readingTime: "5 min",
-    topic: "Placeholder",
+    topic: "Technology",
     article:
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorem quasi aperiam quidem quibusdam, tenetur distinctio!}",
   },
@@ -79,7 +79,7 @@ export const exampleArray: Article[] = [
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. A architecto commodi ut nihil non. Magni aspernatur repellat, dicta quibusdam voluptatibus numquam velit officia quam sed et corrupti doloremque quas quos.",
     imageUrl: "https://www.creaideagraphics.it/wp-content/uploads/2019/04/placeholder-image.jpg",
     readingTime: "5 min",
-    topic: "Placeholder",
+    topic: "Programming",
     article:
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorem quasi aperiam quidem quibusdam, tenetur distinctio!}",
   },
@@ -93,7 +93,7 @@ export const exampleArray: Article[] = [
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. A architecto commodi ut nihil non. Magni aspernatur repellat, dicta quibusdam voluptatibus numquam velit officia quam sed et corrupti doloremque quas quos.",
     imageUrl: "https://www.creaideagraphics.it/wp-content/uploads/2019/04/placeholder-image.jpg",
     readingTime: "5 min",
-    topic: "Placeholder",
+    topic: "Machine Learning",
     article:
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorem quasi aperiam quidem quibusdam, tenetur distinctio!}",
   },
@@ -107,7 +107,7 @@ export const exampleArray: Article[] = [
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. A architecto commodi ut nihil non. Magni aspernatur repellat, dicta quibusdam voluptatibus numquam velit officia quam sed et corrupti doloremque quas quos.",
     imageUrl: "https://www.creaideagraphics.it/wp-content/uploads/2019/04/placeholder-image.jpg",
     readingTime: "5 min",
-    topic: "Placeholder",
+    topic: "Machine Learning",
     article:
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorem quasi aperiam quidem quibusdam, tenetur distinctio!}",
   },
@@ -121,13 +121,13 @@ export const exampleArray: Article[] = [
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. A architecto commodi ut nihil non. Magni aspernatur repellat, dicta quibusdam voluptatibus numquam velit officia quam sed et corrupti doloremque quas quos.",
     imageUrl: "https://www.creaideagraphics.it/wp-content/uploads/2019/04/placeholder-image.jpg",
     readingTime: "5 min",
-    topic: "Placeholder",
+    topic: "Programming",
     article:
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorem quasi aperiam quidem quibusdam, tenetur distinctio!}",
   },
 ];
 
-export const exampleTabs = ["Programming", "Technology"];
+export const exampleTabs = ["Programming", "Technology", "Data Science"];
 
 export const exampleTopicNotSelected = [
   "Inter",
