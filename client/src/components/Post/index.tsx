@@ -28,9 +28,9 @@ export default function Post({
   const [saved, setSaved] = useState(false);
 
   useEffect(() => {
-    if(checkIfSaved){
+    if (checkIfSaved) {
       const isSaved = checkIfSaved(article.id);
-      setSaved(isSaved)
+      setSaved(isSaved);
     }
   }, []);
 
