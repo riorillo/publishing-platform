@@ -64,7 +64,7 @@ const Rightbar = () => {
   return (
     <Box sx={{position: "sticky", top: 0, height:"100vh", overflowY: "scroll"}}>
       <Searchbar />
-      <Box sx={{ display: "flex", alignItems: "center", mt: 4, ml: 3 }}>
+      <Box sx={{ display: "flex", alignItems: "center", mt: 4, ml: 3}}>
         <Link to="#">
           <FiberManualRecordIcon
             fontSize="small"

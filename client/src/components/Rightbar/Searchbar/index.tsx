@@ -3,7 +3,7 @@ import { Search, SearchIconWrapper, StyledInputBase } from "./style";
 
 const Searchbar = () => {
   return (
-    <Search sx={{ mt: "40px" }}>
+    <Search sx={{ mt: "40px", mr: 2}}>
       <SearchIconWrapper>
         <SearchIcon />
       </SearchIconWrapper>

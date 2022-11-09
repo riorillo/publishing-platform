@@ -1,7 +1,7 @@
 import React from "react";
 import { Button } from "@mui/material";
 
-export function CloudinaryUploadWidget({ handleSetUrl }) {
+export function CloudinaryUploadWidget({ handleSetUrl, buttonText = "Upload a profile Picture"}) {
   const cloudName = "dhat5iy1e";
   const uploadPreset = "develhope";
 
@@ -40,7 +40,7 @@ export function CloudinaryUploadWidget({ handleSetUrl }) {
       variant="outlined"
       onClick={openWidget}
     >
-      Upload a profile Picture
+      {buttonText}
     </Button>
   );
 }

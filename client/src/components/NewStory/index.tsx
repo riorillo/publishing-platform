@@ -1,6 +1,5 @@
 import { Box } from "@mui/material";
 import axios from "axios";
-import { setDefaultResultOrder } from "dns";
 import { useContext, useEffect, useState } from "react";
 import { UserContext } from "../../utils/context";
 import NewStoryModal from "./NewStoryModal";
@@ -12,6 +11,8 @@ const NewStory = () => {
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<boolean>(false);
   const [success, setSuccess] = useState<boolean>(false);
+  const [image, setImage] = useState<string>("");
+
   const user = useContext(UserContext) as any;
   //Titolo formattato;
   const [title, setTitle] = useState<string>("");
@@ -42,12 +43,9 @@ const NewStory = () => {
       contentFormatted: body,
       content: bodyText,
       topic: [selectedTopic],
-      image:
-        body.search("src") !== -1
-          ? body.slice(body.search("src"), body.length).split('"')[1]
-          : "",
+      image: image,
     }));
-  }, [title, body, selectedTopic]);
+  }, [title, body, selectedTopic, image]);
 
   return (
     <>
@@ -56,7 +54,6 @@ const NewStory = () => {
           onClick={() => {
             setOpen(true);
           }}
-          username="Rocco Iorillo"
         />
       </Box>
 
@@ -74,21 +71,16 @@ const NewStory = () => {
         onChange={(event, value) => {
           setSelectedTopic(value);
         }}
-        //DA FIXARE - LA RICHIESTA NON VA A BUON FINE;
         onClick={async () => {
           try {
             setLoading(true);
             setSuccess(false);
             setError(false);
-            const res = await axios.post(
-              "http://localhost:3001/api/post/create",
-              post,
-              {
-                headers: {
-                  token: `Bearer ${window.sessionStorage.getItem("token")}`,
-                },
-              }
-            );
+            const res = await axios.post("http://localhost:3001/api/post/create", post, {
+              headers: {
+                token: `Bearer ${window.sessionStorage.getItem("token")}`,
+              },
+            });
             setSuccess(true);
             setTimeout(() => {
               window.location.replace("http://localhost:3000/home/me/stories");
@@ -98,6 +90,9 @@ const NewStory = () => {
           } finally {
             setLoading(false);
           }
+        }}
+        onUpload={(url: string) => {
+          setImage(url);
         }}
       />
 

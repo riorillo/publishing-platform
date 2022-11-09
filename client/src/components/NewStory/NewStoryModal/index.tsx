@@ -1,25 +1,27 @@
-import {
-  Autocomplete,
-  Box,
-  Button,
-  Modal,
-  TextField,
-  Typography,
-} from "@mui/material";
+import { Autocomplete, Box, Button, Modal, TextField, Typography } from "@mui/material";
 import { NewStoryModalStyle } from "./style";
-import CircularProgress from '@mui/material/CircularProgress';
-
+import CircularProgress from "@mui/material/CircularProgress";
+import { CloudinaryUploadWidget } from "../../../pages/register/CloudinaryUploadWidget";
+import { useEffect, useState } from "react";
 
 const NewStoryModal: React.FC<{
   open: boolean;
   onClose: () => void;
   onClick?: () => void;
   onChange?: (event: any, value: any) => void;
+  onUpload?: (url: string) => void;
   success: boolean;
   error: boolean;
   loading: boolean;
-}> = ({ open, onClose, onClick, onChange, success, error, loading}) => {
-  const {box, successBox} = NewStoryModalStyle;
+}> = ({ open, onClose, onClick, onChange, onUpload, success, error, loading }) => {
+  const { box, successBox } = NewStoryModalStyle;
+  const [imageUrl, setImageUrl] = useState<string>("");
+
+  useEffect(() => {
+    if (onUpload) {
+      onUpload(imageUrl);
+    }
+  }, [imageUrl]);
 
   return (
     <Modal
@@ -52,16 +54,30 @@ const NewStoryModal: React.FC<{
             "Productivity",
             "Politics",
           ]}
-          sx={{ width: 300, mb: 2}}
+          sx={{ width: 300, mb: 2 }}
           renderInput={(params: any) => <TextField {...params} label="Topic" />}
           onChange={onChange}
         />
 
-        {!loading && <Button variant="contained" onClick={onClick}>
-          Proceed
-        </Button>}
+        <Box sx={{ mb: 2 }}>
+          {!imageUrl && <CloudinaryUploadWidget buttonText="Add a preview image" handleSetUrl={setImageUrl} />}
+          {imageUrl && 
+          <Box sx={successBox}>
+            <Typography> Your image has been loaded ✅</Typography>
+            </Box>}
+        </Box>
+
+        {!loading && (
+          <Button variant="contained" onClick={onClick}>
+            Proceed
+          </Button>
+        )}
         {loading && <CircularProgress />}
-        {success && <Box sx={successBox}><Typography>Your article has been posted 😀</Typography></Box>}
+        {success && (
+          <Box sx={successBox}>
+            <Typography>Your article has been posted ✅</Typography>
+          </Box>
+        )}
       </Box>
     </Modal>
   );
