@@ -11,8 +11,8 @@ export function CardFooter({ tag, readingTime }: Props) {
     <>
       <Box sx={styles.CardFooter.layout}>
         {tag
-          ? tag.map((e) => (
-              <Box sx={styles.CardFooter.details}>
+          ? tag.map((e, i) => (
+              <Box sx={styles.CardFooter.details} key={i}>
                 <Typography sx={{ fontSize: { sm: ".8rem", xs: "12px" } }}>
                   {e}
                 </Typography>
