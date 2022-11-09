@@ -32,6 +32,7 @@ export const styles: Style = {
     whiteSpace: "nowrap",
   },
   cardContainer: {
+    width: "100%",
     maxWidth: { sm: 700, xs: "95%" },
     margin: "auto",
     marginBottom: "20px",

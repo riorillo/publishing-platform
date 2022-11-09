@@ -12,6 +12,8 @@ import { Article } from "../SavedPost/mockArticle";
 import { UserContext, UserContextType } from "../../utils/context";
 import axios from "axios";
 import debounce from "lodash.debounce";
+import { useNavigate } from "react-router-dom";
+
 
 type Props = {
   article: Article;
@@ -26,6 +28,9 @@ export default function Post({
 }: Props) {
   const user = useContext<UserContextType>(UserContext);
   const [saved, setSaved] = useState(false);
+  const navigate = useNavigate();
+
+
   useEffect(() => {
     if (checkIfSaved) {
       const isSaved = checkIfSaved(article.id);
@@ -53,20 +58,37 @@ export default function Post({
 
   const debouncedOnChange = debounce(handleSavePost, 400);
 
+  let articleChars = article.content.split(" ");
+  let readingTime = `${Math.floor(articleChars.length * 0.04)} min`;
+
   return (
     <>
       <Card sx={styles.cardContainer}>
         <Header
-          username={article.username}
-          userImage={article.userImage}
-          publishedAt={article.publishedAt}
+          username={article.author.username}
+          userImage={
+            article.author.avatar
+              ? article.author.avatar
+              : "https://www.creaideagraphics.it/wp-content/uploads/2019/04/placeholder-image.jpg"
+          }
+          publishedAt={article.createdAt.substring(0, 10)}
         />
-        <CardActionArea sx={styles.flex}>
-          <CardHeader title={article.title} description={article.description} />
+        <CardActionArea sx={styles.flex} onClick={() => {navigate("/home/post/" + article.id)}}>
+          <CardHeader
+            title={article.title}
+            description={
+              article.content.length > 300
+                ? `${article.content.slice(0, 300)}...`
+                : article.content
+            }
+          />
           <CardImage imageUrl={article.imageUrl} />
         </CardActionArea>
         <Box sx={styles.FooterContainer}>
-          <CardFooter tag={article.topic} readingTime={article.readingTime} />
+          <CardFooter
+            tag={article.topic}
+            readingTime={readingTime === "0 min" ? "1 min" : readingTime}
+          />
           <FooterIcons
             checkSavedIcon={("isSaved" in article) ? article.isSaved : true}
             handleSavePost={debouncedOnChange}

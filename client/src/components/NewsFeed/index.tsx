@@ -17,13 +17,11 @@ export default function NewsFeed() {
   const [allPost, setAllPost] = useState<any>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const user = useContext<UserContextType>(UserContext);
-  console.log(user);
 
   useEffect(() => {
     const retrieveList = async () => {
       try {
         const topics = user.topics as any;
-
         const posts: any = [];
         setLoading(true);
 
@@ -41,25 +39,27 @@ export default function NewsFeed() {
                 ? item.image
                 : "https://www.creaideagraphics.it/wp-content/uploads/2019/04/placeholder-image.jpg",
               publishedAt: item.createdAt.substring(0, 10),
-              description: item.content,
-              username: item.author.name,
+              description: item.content ? `${item.content.slice(0, 300)}...` : item.content,
+              username: item.author.username,
               topic: [...item.topic],
-              userImage:
-                "https://www.mtsolar.us/wp-content/uploads/2020/04/avatar-placeholder.png",
+              userImage: item.author.avatar
+                ? item.author.avatar
+                : "https://www.mtsolar.us/wp-content/uploads/2020/04/avatar-placeholder.png",
               readingTime: "5 min",
             }));
+            console.log(retrievedPosts)
             const savedCheckRetrievedPosts = retrievedPosts.map((ele: any) =>
               ele.Saved.some((innerEle: any) => innerEle.userId === user.id)
                 ? { ...ele, isSaved: true }
                 : {...ele, isSaved: false}
             );
-            // posts.push(...retrievedPosts);
             posts.push(...savedCheckRetrievedPosts);
           })
         );
         setAllPost(posts);
         setVisualizedList(posts);
       } catch (e) {
+        console.log(e)
         alert("Something went wrong, please refresh ⚠️");
       } finally {
         setLoading(false);

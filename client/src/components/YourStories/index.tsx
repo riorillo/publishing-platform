@@ -21,10 +21,10 @@ const YourStories = () => {
           ? item.image
           : "https://www.creaideagraphics.it/wp-content/uploads/2019/04/placeholder-image.jpg",
         publishedAt: item.createdAt.substring(0, 10),
-        description: item.content,
+        description: `${item.content.slice(0, 300)}...`,
         username: item.author.name,
         topic: [...item.topic],
-        userImage: "https://www.mtsolar.us/wp-content/uploads/2020/04/avatar-placeholder.png",
+        userImage: item.author.avatar ? item.author.avatar : "https://www.mtsolar.us/wp-content/uploads/2020/04/avatar-placeholder.png",
         readingTime: "5 min",
       }));
       setArticles(retrievedArticles);
@@ -39,7 +39,7 @@ const YourStories = () => {
     <>
       {loading && <Loading />}
       {!loading && (
-        <Box sx={{ width: "100%", pt: "32px", pl: "118.750px", pr: "118.750px" }}>
+        <Box sx={{ width: "100%", pt: "32px", pl: {sm:"118.750px", xs:"20px"}, pr: {sm:"118.750px", xs:"20px"} }}>
           <Typography variant="h3" fontWeight={"bold"} sx={{ mb: 2 }}>
             Your stories
           </Typography>

@@ -15,6 +15,10 @@
   color: gray;
 }
 
+#quill-viewer > div > div > div.ql-editor {
+  font-size: 21px;
+}
+
 * {
   margin: 0;
   padding: 0;

@@ -2,13 +2,17 @@ export type Article = {
   // title: string;
   id: string;
   username: string;
-  publishedAt: string;
+  createdAt: string;
   topic: string[];
   article: string;
+  author : {
+    username : string
+    avatar : string,
+  } 
   imageUrl: string;
-  description: string;
+  content: string;
   userImage: string;
-  readingTime: string;
+  readingTime: string
   title: string;
   Saved: {userId: string},
   isSaved?: boolean
