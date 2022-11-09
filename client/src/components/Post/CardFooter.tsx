@@ -3,22 +3,26 @@ import { Box } from "@mui/system";
 import { Typography } from "@mui/material";
 
 type Props = {
-  tag: string;
+  tag: string[];
   readingTime: string;
 };
 export function CardFooter({ tag, readingTime }: Props) {
   return (
     <>
       <Box sx={styles.CardFooter.layout}>
-        {tag ? (
-          <Box sx={styles.CardFooter.details}>
-            <Typography> {tag}</Typography>
-            {/* Questo box sarà showato solamente se la notizia riportata avrà un tag specificato, il contenuto del tag sarà appunto il topic */}
-          </Box>
-        ) : null}
+        {tag
+          ? tag.map((e) => (
+              <Box sx={styles.CardFooter.details}>
+                <Typography sx={{ fontSize: { sm: ".8rem", xs: "12px" } }}>
+                  {e}
+                </Typography>
+              </Box>
+            ))
+          : null}
         <Box>
-          <Typography>{readingTime}</Typography>
-          {/*Questo box verrà popolato con il tempo stimato per la lettura dell'articolo, altrimenti non sarà renderizzato, come quello dei tag*/}
+          <Typography sx={{ fontSize: { sm: ".8rem", xs: "12px" } }}>
+            {readingTime}
+          </Typography>
         </Box>
       </Box>
     </>

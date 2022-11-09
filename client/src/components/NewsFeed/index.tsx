@@ -1,6 +1,6 @@
 import React, { SyntheticEvent, useEffect, useContext, useState } from "react";
 import PostFilter from "../SavedPost/PostFilter";
-import { Article, exampleArray } from "../SavedPost/mockArticle";
+import { Article } from "../SavedPost/mockArticle";
 import { Box } from "@mui/system";
 import LayoutStyle from "../SavedPost/style";
 import { UserContext, UserContextType } from "../../utils/context";
