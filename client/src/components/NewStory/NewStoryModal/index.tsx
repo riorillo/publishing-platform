@@ -52,7 +52,16 @@ const NewStoryModal: React.FC<{
             "Relationships",
             "Machine Learning",
             "Productivity",
+            "Artificial Intelligence",
             "Politics",
+            "Development",
+            "Coding",
+            "Cryptocurrency",
+            "Blockchain",
+            "Frameworks",
+            "Cybersecurity",
+            "Biometrics",
+            "Mobile"
           ]}
           sx={{ width: 300, mb: 2 }}
           renderInput={(params: any) => <TextField {...params} label="Topic" />}

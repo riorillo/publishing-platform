@@ -10,9 +10,7 @@ import { Article } from "../SavedPost/mockArticle";
 
 export default function NewsFeed() {
   const [visualized, setVisualized] = useState<string>("All");
-  const [visualizedList, setVisualizedList] = useState<Article[] | undefined>(
-    []
-  );
+  const [visualizedList, setVisualizedList] = useState<Article[] | undefined>([]);
   const [topicToAdd, setTopicToAdd] = useState([]);
   const [allPost, setAllPost] = useState<any>([]);
   const [loading, setLoading] = useState<boolean>(true);
@@ -27,12 +25,9 @@ export default function NewsFeed() {
 
         await Promise.all(
           topics.map(async (item: any) => {
-            const res = await axios.get(
-              `http://localhost:3001/api/post/find/${item}`,
-              {
-                headers: { token: `Bearer ${user.accessToken}` },
-              }
-            );
+            const res = await axios.get(`http://localhost:3001/api/post/find/${item}`, {
+              headers: { token: `Bearer ${user.accessToken}` },
+            });
             const retrievedPosts = res.data.map((item: any) => ({
               ...item,
               imageUrl: item.image
@@ -47,19 +42,23 @@ export default function NewsFeed() {
                 : "https://www.mtsolar.us/wp-content/uploads/2020/04/avatar-placeholder.png",
               readingTime: "5 min",
             }));
-            console.log(retrievedPosts)
             const savedCheckRetrievedPosts = retrievedPosts.map((ele: any) =>
               ele.Saved.some((innerEle: any) => innerEle.userId === user.id)
                 ? { ...ele, isSaved: true }
-                : {...ele, isSaved: false}
+                : { ...ele, isSaved: false }
             );
             posts.push(...savedCheckRetrievedPosts);
           })
         );
-        setAllPost(posts);
-        setVisualizedList(posts);
+
+        const idList = posts.map((item: any) => item.id);
+        const removeDuplicates = posts.filter(
+          (item: any, index: number) => idList.indexOf(item.id) === index
+        );
+
+        setAllPost(removeDuplicates);
+        setVisualizedList(removeDuplicates);
       } catch (e) {
-        console.log(e)
         alert("Something went wrong, please refresh ⚠️");
       } finally {
         setLoading(false);
@@ -85,9 +84,7 @@ export default function NewsFeed() {
     if (user.topics) {
       const fetchingTopicsList = async () => {
         const topicsData = await fetchDataFromServer("topics");
-        const filteredTopics = topicsData?.data.filter(
-          (el: string) => !user.topics?.includes(el)
-        );
+        const filteredTopics = topicsData?.data.filter((el: string) => !user.topics?.includes(el));
         setTopicToAdd(filteredTopics);
       };
       fetchingTopicsList();
