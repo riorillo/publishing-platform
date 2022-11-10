@@ -14,7 +14,8 @@ const UsersToFollow: React.FC<{
   avatar: string;
   title: string;
   isLast?: boolean;
-}> = ({ username, avatar, title, isLast }) => {
+  toArticle: string;
+}> = ({ username, avatar, title, isLast, toArticle }) => {
   const [follow, setFollow] = useState(false);
 
   function handleFollow() {
@@ -29,11 +30,12 @@ const UsersToFollow: React.FC<{
             <Avatar alt={username} src={avatar} />
           </ListItemAvatar>
         </Link>
-        <Link to="#"></Link>
-        <ListItemText sx={{paddingRight:".8rem"}}
+        <Link to={toArticle}></Link>
+        <ListItemText
+          sx={{ paddingRight: ".8rem" }}
           primary={
             <Link
-              to="#"
+              to={toArticle}
               style={{
                 textDecoration: "none",
                 color: "black",
@@ -46,7 +48,7 @@ const UsersToFollow: React.FC<{
           secondary={
             <React.Fragment>
               <Link
-                to="#"
+                to={toArticle}
                 style={{
                   textDecoration: "none",
                   color: "inherit",

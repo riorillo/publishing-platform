@@ -50,16 +50,19 @@ const WhoToFollow = [
     username: "Lorenzo",
     avatar: lore,
     title: "Coding, culurgiones and calisthenics.",
+    link: "/home/post/6738732b-b1e7-4ddd-8c4e-d2bbbd8c2fbb",
   },
   {
     username: "Marco",
     avatar: marco,
     title: "Per aspera sic itur ad astra.",
+    link: "/home/post/7f198f43-4845-4c06-9c00-99324ae53ad7",
   },
   {
     username: "Rocco",
     avatar: rocco,
     title: "O sol, o cor, o mar.",
+    link: "/home/post/ca3461a8-7dcd-40df-81e3-0e4f1a94fed5",
   },
 ];
 
@@ -145,6 +148,7 @@ const Rightbar = () => {
             avatar={item.avatar}
             title={item.title}
             isLast={index === StaffPicks.length - 1 ? true : false}
+            toArticle={item.link}
           />
         ))}
       </List>
