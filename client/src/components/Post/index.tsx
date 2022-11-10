@@ -59,7 +59,7 @@ export default function Post({
   const debouncedOnChange = debounce(handleSavePost, 400);
 
   let articleChars = article.content.split(" ");
-  let readingTime = `${Math.floor(articleChars.length * 0.04)} min`;
+  let readingTime = `${Math.floor(articleChars.length * 0.02)} min`;
 
   return (
     <>
@@ -87,7 +87,7 @@ export default function Post({
         <Box sx={styles.FooterContainer}>
           <CardFooter
             tag={article.topic}
-            readingTime={readingTime === "0 min" ? "1 min" : readingTime}
+            readingTime={readingTime === "0 min" ? "1 min": readingTime}
           />
           <FooterIcons
             checkSavedIcon={("isSaved" in article) ? article.isSaved : false}
