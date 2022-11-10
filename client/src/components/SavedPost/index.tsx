@@ -1,23 +1,10 @@
 import { Box, Typography } from "@mui/material";
-import { SyntheticEvent, useContext, useEffect, useState } from "react";
-import LayoutStyle from "./style";
+import { useContext, useEffect, useState } from "react";
 import axios from "axios";
 import { UserContext, UserContextType } from "../../utils/context";
 import Post from "../Post";
 import { Article } from "./mockArticle";
 import Loading from "../Loading";
-
-interface SavedPostList {
-  id: string;
-  content: string;
-  contentFormatted: string;
-  image: string;
-  topic: string[];
-  title: string;
-  createAt: Date;
-  updateAt: Date;
-  authorId: string;
-}
 
 export default function SavedPost() {
   const [savedPosts, setSavedPosts] = useState<Article[]>([]);
@@ -37,7 +24,19 @@ export default function SavedPost() {
             },
           }
         );
-        setSavedPosts(fetchedSavedPost.data);
+        const retrivedData = fetchedSavedPost.data.map((item: any) => ({
+          ...item,
+          imageUrl: item.image
+            ? item.image
+            : "https://www.creaideagraphics.it/wp-content/uploads/2019/04/placeholder-image.jpg",
+          publishedAt: item.createdAt.substring(0, 10),
+          description: `${item.content.slice(0, 300)}...`,
+          username: item.author.name,
+          topic: [...item.topic],
+          userImage: item.author.avatar ? item.author.avatar : "https://www.mtsolar.us/wp-content/uploads/2020/04/avatar-placeholder.png",
+          readingTime: "5 min",
+        }));
+        setSavedPosts(retrivedData);
       } catch (err) {
         console.error(err);
       } finally {

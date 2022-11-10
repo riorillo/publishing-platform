@@ -21,11 +21,9 @@ export function Header({ username, userImage, publishedAt } : Props) {
           sx={styles.userImage}
         />
         <Typography variant="body2" color="text.primary">
-          {/* Da popolare con l'username dell'utente che pubblica */}
           {username}
         </Typography>
         <Typography variant="body2" color="text.secondary">
-          {/* Da popolare la data di pubblicazione */}
           {publishedAt}
         </Typography>
       </Box>
