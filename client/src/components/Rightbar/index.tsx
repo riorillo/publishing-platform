@@ -17,17 +17,20 @@ const StaffPicks = [
   {
     username: "Alessandro",
     avatar: ale,
-    title: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+    title: "Smoke Sessions Tournament Starts Tonight!",
+    link:"/home/post/85b82bcc-9ad4-4133-86eb-c7d9e901d79c"
   },
   {
     username: "Francesco",
     avatar: frank,
     title: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+    link:"/home/post/85b82bcc-9ad4-4133-86eb-c7d9e901d79c"
   },
   {
     username: "Ivan",
     avatar: ivan,
     title: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+    link:"/home/post/85b82bcc-9ad4-4133-86eb-c7d9e901d79c"
   },
 ];
 
@@ -62,7 +65,7 @@ const WhoToFollow = [
 
 const Rightbar = () => {
   return (
-    <Box sx={{position: "sticky", top: 0, height:"100vh", overflowY: "scroll" ,'&::-webkit-scrollbar': { width: 0, }}}>
+    <Box sx={{position: "sticky", paddingLeft:"2rem" ,borderLeft:"1px solid lightgrey" ,top: 0, height:"100vh", overflowY: "scroll" ,'&::-webkit-scrollbar': { width: 0, }}}>
       <Searchbar />
       <Box sx={{ display: "flex", alignItems: "center", mt: 4, ml: 3}}>
         <Link to="#">
@@ -92,6 +95,7 @@ const Rightbar = () => {
             avatar={item.avatar}
             title={item.title}
             isLast={index === StaffPicks.length - 1 ? true : false}
+            toArticle={item.link}
           />
         ))}
       </List>

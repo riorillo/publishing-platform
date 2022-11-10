@@ -51,7 +51,7 @@ export default function SavedPost() {
       {loading && <Loading size={50}/>}
       {!loading && (
         <Box
-          sx={{ width: "100%", pt: "32px", pl: {sm:"118.750px", xs:"20px"}, pr: {sm:"118.750px", xs:"20px"} }}
+          sx={{ width: "100%", pt: "32px", pl: {md:"118.750px", xs:"20px"}, pr: {md:"118.750px", xs:"20px"} }}
         >
           <Typography variant="h3" fontWeight={"bold"} sx={{ mb: 2 }}>
             Saved Posts
