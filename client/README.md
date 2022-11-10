@@ -2,6 +2,10 @@
 
 Team project - Develhope Coding School - Team 1
 
+Dev.log( ) is a content publishing platform focused on technology and development. Here you can create your own account, seletc topics of your interest, and login to the site. Once logged in, you can write articles, read other author's articles and establish a real connection with other users, sharing your interests and feeling part of a great community. 
+
+Join our community, log to the dev family.
+
 ## Team Members 👨🏻‍💻
 
 - [Alessandro Sgherri](https://github.com/AlexSgherri)
@@ -17,20 +21,11 @@ Team project - Develhope Coding School - Team 1
 - Definition of the general concept, focus of the project, core features to implement
 - Planning and study of the user interface, user experience, graphic design
 - Technologies, languages, frameworks and libraries, services : React.js, TypeScript, Material UI, Express.js, Prisma, Cockroach DB
+- Our API: [Dev.log( ) API](https://github.com/riorillo/publishing-platform-API)
 - Agile: Trello kanban board
 - Testing and bug-fixing
 - Deployment
 
-## Communication Channels 💬
-
-- Telegram
-- Discord
-- Google Meet
-
-## Weekly Meetings 📅
-
-- Monday : Project Manager meeting, stand-up, weekly sprint planning
-- Friday : Midweek review
 
 # Getting Started with Create React App
 
