@@ -47,7 +47,6 @@ export default function NewsFeed() {
                 : "https://www.mtsolar.us/wp-content/uploads/2020/04/avatar-placeholder.png",
               readingTime: "5 min",
             }));
-            console.log(retrievedPosts)
             const savedCheckRetrievedPosts = retrievedPosts.map((ele: any) =>
               ele.Saved.some((innerEle: any) => innerEle.userId === user.id)
                 ? { ...ele, isSaved: true }
@@ -59,7 +58,6 @@ export default function NewsFeed() {
         setAllPost(posts);
         setVisualizedList(posts);
       } catch (e) {
-        console.log(e)
         alert("Something went wrong, please refresh ⚠️");
       } finally {
         setLoading(false);

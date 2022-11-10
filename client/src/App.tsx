@@ -23,7 +23,6 @@ export function App() {
   useEffect(() => {
     const checkIfStorage: string | null = localStorage.getItem("userContext");
     if (checkIfStorage && checkIfStorage !== null) {
-      console.log("storage:", JSON.parse(checkIfStorage));
 
       setUserData(JSON.parse(checkIfStorage));
     }
