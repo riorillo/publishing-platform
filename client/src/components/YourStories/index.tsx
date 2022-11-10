@@ -28,7 +28,6 @@ const YourStories = () => {
         readingTime: "5 min",
       }));
       setArticles(retrievedArticles);
-      console.log(data);
       setLoading(false);
     };
 

@@ -17,7 +17,6 @@ const ArticlePage = () => {
       const res = await axios.get(`http://localhost:3001/api/post/get/${id}`);
       setArticle(res.data);
       setAuthor(res.data.author);
-      console.log(res.data);
     };
 
     retrieveArticle();
