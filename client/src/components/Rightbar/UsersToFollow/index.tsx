@@ -30,7 +30,7 @@ const UsersToFollow: React.FC<{
           </ListItemAvatar>
         </Link>
         <Link to="#"></Link>
-        <ListItemText sx={{paddingRight:".5rem"}}
+        <ListItemText sx={{paddingRight:".8rem"}}
           primary={
             <Link
               to="#"

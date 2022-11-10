@@ -13,12 +13,13 @@ const Pick: React.FC<{
   avatar: string;
   title: string;
   isLast?: boolean;
-}> = ({ username, avatar, title, isLast }) => {
+  toArticle: string
+}> = ({ username, avatar, title, isLast, toArticle }) => {
   return (
     <>
       {" "}
       <ListItem alignItems="flex-start">
-        <Link to="#">
+        <Link to={toArticle}>
           <ListItemAvatar>
             <Avatar
               alt={username}
@@ -30,11 +31,11 @@ const Pick: React.FC<{
             />
           </ListItemAvatar>
         </Link>
-        <Link to="#"></Link>
+        <Link to={toArticle}></Link>
         <ListItemText
           primary={
             <Link
-              to="#"
+              to={toArticle}
               style={{
                 textDecoration: "none",
                 color: "black",
@@ -47,7 +48,7 @@ const Pick: React.FC<{
           secondary={
             <React.Fragment>
               <Link
-                to="#"
+                to={toArticle}
                 style={{
                   textDecoration: "none",
                   color: "inherit",
