@@ -25,7 +25,7 @@ const UsersToFollow: React.FC<{
     <>
       {" "}
       <ListItem alignItems="flex-start">
-        <Link to="#">
+        <Link to={toArticle}>
           <ListItemAvatar>
             <Avatar alt={username} src={avatar} />
           </ListItemAvatar>
