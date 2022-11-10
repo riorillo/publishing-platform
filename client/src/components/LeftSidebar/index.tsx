@@ -83,7 +83,7 @@ export const LeftSidebar = () => {
         </NavLink>
       </Box>
       <div>
-        <Button aria-describedby={id} onClick={handleClick}>
+        <Button sx={{borderRadius:"50%"}} aria-describedby={id} onClick={handleClick}>
           <Avatar alt="Avatar" src={user.avatar} />
         </Button>
         <Popover
