@@ -49,7 +49,7 @@ export default function SavedPost() {
 
   return (
     <>
-      {loading && <Loading />}
+      {loading && <Loading size={50}/>}
       {!loading && (
         <Box
           sx={{ width: "100%", pt: "32px", pl: {sm:"118.750px", xs:"20px"}, pr: {sm:"118.750px", xs:"20px"} }}

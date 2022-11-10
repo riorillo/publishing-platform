@@ -125,7 +125,7 @@ export default function NewsFeed() {
             height: "100vh",
           }}
         >
-          <CircularProgress size={144} />
+          <CircularProgress size={50} />
           <Typography sx={{ color: "gray" }} variant="h5">
             Loading...
           </Typography>
