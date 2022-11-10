@@ -16,8 +16,18 @@ const LeftSidebarStyle = {
     justifyContent: "center",
   },
   icon: {
-    fill: 'black',
-  }
+    fill: "black",
+  },
+  logout: {
+    cursor: "pointer",
+    px: 2.5,
+    py: 1.25,
+    transition: "all .3s ease-in-out",
+    "&:hover": {
+      backgroundColor: "#7AC86A",
+      color: "white"
+    }
+  },
 };
 
 export default LeftSidebarStyle;

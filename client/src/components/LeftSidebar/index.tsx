@@ -1,6 +1,13 @@
-import { useContext } from "react";
-import { Avatar, Box, Container } from "@mui/material";
-import { NavLink, useLocation } from "react-router-dom";
+import { useContext, useState } from "react";
+import {
+  Avatar,
+  Box,
+  Button,
+  Container,
+  Popover,
+  Typography,
+} from "@mui/material";
+import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import LeftSidebarStyle from "./style";
 import Logo from "../Logo";
 import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
@@ -14,8 +21,29 @@ import { UserContext, UserContextType } from "../../utils/context";
 
 export const LeftSidebar = () => {
   const { pathname } = useLocation();
+  const navigate = useNavigate();
   const { icon, container, box } = LeftSidebarStyle;
   const user = useContext<UserContextType>(UserContext);
+  const [anchorEl, setAnchorEl] = useState<HTMLButtonElement | null>(null);
+
+  const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+
+  const handleNavigate = () => {
+    
+    setTimeout(() => {
+      navigate("/login");
+      localStorage.removeItem("userContext")
+    }, 150);
+  };
+
+  const open = Boolean(anchorEl);
+  const id = open ? "simple-popover" : undefined;
 
   return (
     <Container sx={container}>
@@ -54,8 +82,29 @@ export const LeftSidebar = () => {
           <CreateOutlinedIcon sx={icon} />
         </NavLink>
       </Box>
-
-      <Avatar alt="Avatar" src={user.avatar} />
+      <div>
+        <Button aria-describedby={id} onClick={handleClick}>
+          <Avatar alt="Avatar" src={user.avatar} />
+        </Button>
+        <Popover
+          id={id}
+          open={open}
+          anchorEl={anchorEl}
+          onClose={handleClose}
+          anchorOrigin={{
+            vertical: "top",
+            horizontal: "left",
+          }}
+          transformOrigin={{
+            vertical: "bottom",
+            horizontal: "left",
+          }}
+        >
+          <Typography onClick={handleNavigate} sx={LeftSidebarStyle.logout}>
+            Logout
+          </Typography>
+        </Popover>
+      </div>
     </Container>
   );
 };
