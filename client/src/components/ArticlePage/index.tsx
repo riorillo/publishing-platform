@@ -20,7 +20,7 @@ const ArticlePage = () => {
     };
 
     retrieveArticle();
-  }, []);
+  }, [id]);
 
   return (
     <>

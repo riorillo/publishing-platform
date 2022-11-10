@@ -16,6 +16,7 @@ const LeftSidebarStyle = {
     justifyContent: "center",
   },
   icon: {
+    fontSize: "28px",
     fill: "black",
   },
   logout: {
