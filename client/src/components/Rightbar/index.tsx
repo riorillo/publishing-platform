@@ -18,19 +18,19 @@ const StaffPicks = [
     username: "Alessandro",
     avatar: ale,
     title: "Smoke Sessions Tournament Starts Tonight!",
-    link:"/home/post/85b82bcc-9ad4-4133-86eb-c7d9e901d79c"
+    link: "/home/post/85b82bcc-9ad4-4133-86eb-c7d9e901d79c",
   },
   {
     username: "Francesco",
     avatar: frank,
-    title: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-    link:"/home/post/85b82bcc-9ad4-4133-86eb-c7d9e901d79c"
+    title: "How to Build a Blockchain in JavaScript?",
+    link: "/home/post/190dfc28-11ed-4c10-8493-620a1aa7d5b2",
   },
   {
     username: "Ivan",
     avatar: ivan,
-    title: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-    link:"/home/post/85b82bcc-9ad4-4133-86eb-c7d9e901d79c"
+    title: "League of Legends Worlds 2022: DRX Triumphs Over T1 3-2.",
+    link: "/home/post/540a3fa7-88a1-423e-9193-f05fca1f8ba5",
   },
 ];
 
@@ -49,25 +49,35 @@ const WhoToFollow = [
   {
     username: "Lorenzo",
     avatar: lore,
-    title: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+    title: "Coding, culurgiones and calisthenics.",
   },
   {
     username: "Marco",
     avatar: marco,
-    title: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+    title: "Per aspera sic itur ad astra.",
   },
   {
     username: "Rocco",
     avatar: rocco,
-    title: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+    title: "O sol, o cor, o mar.",
   },
 ];
 
 const Rightbar = () => {
   return (
-    <Box sx={{position: "sticky", paddingLeft:"2rem" ,borderLeft:"1px solid lightgrey" ,top: 0, height:"100vh", overflowY: "scroll" ,'&::-webkit-scrollbar': { width: 0, }}}>
+    <Box
+      sx={{
+        position: "sticky",
+        paddingLeft: "2rem",
+        borderLeft: "1px solid lightgrey",
+        top: 0,
+        height: "100vh",
+        overflowY: "scroll",
+        "&::-webkit-scrollbar": { width: 0 },
+      }}
+    >
       <Searchbar />
-      <Box sx={{ display: "flex", alignItems: "center", mt: 4, ml: 3}}>
+      <Box sx={{ display: "flex", alignItems: "center", mt: 4, ml: 3 }}>
         <Link to="#">
           <FiberManualRecordIcon
             fontSize="small"
