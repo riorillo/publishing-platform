@@ -90,7 +90,7 @@ export default function Post({
             readingTime={readingTime === "0 min" ? "1 min" : readingTime}
           />
           <FooterIcons
-            checkSavedIcon={("isSaved" in article) ? article.isSaved : true}
+            checkSavedIcon={("isSaved" in article) ? article.isSaved : false}
             handleSavePost={debouncedOnChange}
           />
         </Box>

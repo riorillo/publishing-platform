@@ -33,8 +33,11 @@ export default function SavedPost() {
           description: `${item.content.slice(0, 300)}...`,
           username: item.author.name,
           topic: [...item.topic],
-          userImage: item.author.avatar ? item.author.avatar : "https://www.mtsolar.us/wp-content/uploads/2020/04/avatar-placeholder.png",
+          userImage: item.author.avatar
+            ? item.author.avatar
+            : "https://www.mtsolar.us/wp-content/uploads/2020/04/avatar-placeholder.png",
           readingTime: "5 min",
+          isSaved: true,
         }));
         setSavedPosts(retrivedData);
       } catch (err) {
@@ -48,10 +51,15 @@ export default function SavedPost() {
 
   return (
     <>
-      {loading && <Loading size={50}/>}
+      {loading && <Loading size={50} />}
       {!loading && (
         <Box
-          sx={{ width: "100%", pt: "32px", pl: {md:"118.750px", xs:"20px"}, pr: {md:"118.750px", xs:"20px"} }}
+          sx={{
+            width: "100%",
+            pt: "32px",
+            pl: { md: "118.750px", xs: "20px" },
+            pr: { md: "118.750px", xs: "20px" },
+          }}
         >
           <Typography variant="h3" fontWeight={"bold"} sx={{ mb: 2 }}>
             Saved Posts

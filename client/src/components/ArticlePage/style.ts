@@ -1,6 +1,7 @@
 export const ArticlePageStyle = {
   container: {
     mt: "40px",
+    mb: "40px",
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
